@@ -3,6 +3,7 @@ package lexer.state;
 import lexer.Constants;
 import lexer.Context;
 import lexer.TokenConsumer;
+import lexer.TokenType;
 
 public class CommonState extends AbstractState implements LexerState {
 
@@ -28,7 +29,12 @@ public class CommonState extends AbstractState implements LexerState {
         if (charAsString.matches(Constants.OPERATOR)) {
             adjustContext(character);
             return new OperatorState(context, consumer);
-        } else return null;
+        }
+        if (charAsString.matches(Constants.SPACE)) {
+            adjustContext(character);
+            return new SpaceState(context, consumer);
+        }
+        else return null;
     }
 
     @Override

@@ -18,9 +18,19 @@ public class OperatorState extends AbstractState implements LexerState {
             adjustContext(character);
             return new OperatorState(context, consumer);
         }
-        if (charAsString.matches(Constants.NOT_AN_OPERATOR)) {
-            adjustContext(character);
+        if (charAsString.matches(Constants.NUMBER)) {
             generateToken(getTokenType(context));
+            adjustContext(character);
+            return new NumberState(context, consumer);
+        }
+        if (charAsString.matches(Constants.SPACE)) {
+            generateToken(getTokenType(context));
+            adjustContext(character);
+            return new SpaceState(context, consumer);
+        }
+        if (charAsString.matches(Constants.NOT_AN_OPERATOR)) {
+            generateToken(getTokenType(context));
+            adjustContext(character);
             return new CommonState(context, consumer);
         }
         return null;

@@ -5,6 +5,8 @@ import lexer.state.LexerState;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -174,10 +176,75 @@ public class TestLexer {
         assertTokens(result, expected);
     }
 
+    @Test
+    public void test011SimpleSpace() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier(" ");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        Token expected = new TokenImpl(1, 0, " ", TokenType.SPACE);
+        Token result = consumer.getResult().get(0);
+
+        assertTokens(result, expected);
+    }
+
+    @Test
+    public void test012SimpleOperation() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("2+2");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        Token first = new TokenImpl(1, 0, "2", TokenType.NUMBER);
+        Token second = new TokenImpl(2, 0, "+", TokenType.PLUS);
+        Token third = new TokenImpl(3, 0, "2", TokenType.NUMBER);
+        List<Token> expected = Arrays.asList(first, second, third);
+        List<Token> result = consumer.getResult();
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test013OperationWithSpaces() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("2 + 2");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        Token first = new TokenImpl(1, 0, "2", TokenType.NUMBER);
+        Token second = new TokenImpl(2, 0, " ", TokenType.SPACE);
+        Token third = new TokenImpl(3, 0, "+", TokenType.PLUS);
+        Token fourth = new TokenImpl(4, 0, " ", TokenType.SPACE);
+        Token fifth = new TokenImpl(5, 0, "2", TokenType.NUMBER);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth);
+        List<Token> result = consumer.getResult();
+
+        assertTokenList(result, expected);
+    }
+
     private void assertTokens(Token actual, Token expected) {
         assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));
         assertThat(actual.getLine(), is(equalTo(expected.getLine())));
         assertThat(actual.getType(), is(equalTo(expected.getType())));
         assertThat(actual.getValue(), is(equalTo(expected.getValue())));
+    }
+
+    private void assertTokenList(List<Token> actualList, List<Token> expectedList) {
+        if (actualList.size() != expectedList.size()) throw new RuntimeException("Different size");
+        for (int i = 0; i < actualList.size(); i++) {
+            Token actual = actualList.get(i);
+            Token expected = expectedList.get(i);
+            assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));
+            assertThat(actual.getLine(), is(equalTo(expected.getLine())));
+            assertThat(actual.getType(), is(equalTo(expected.getType())));
+            assertThat(actual.getValue(), is(equalTo(expected.getValue())));
+        }
     }
 }

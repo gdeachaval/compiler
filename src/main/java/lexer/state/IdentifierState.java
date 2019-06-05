@@ -19,8 +19,8 @@ public class IdentifierState extends AbstractState implements LexerState {
             return new IdentifierState(context, consumer);
         }
         if (charAsString.matches(Constants.NOT_ALPHANUMERIC)) {
-            adjustContext(character);
             generateToken(getTokenType(context));
+            adjustContext(character);
             return new CommonState(context, consumer);
         }
         return null;
