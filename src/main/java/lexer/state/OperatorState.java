@@ -18,8 +18,7 @@ public class OperatorState extends AbstractState {
             adjustContext(character);
             return new OperatorState(context, consumer);
         }
-        return defaultHandle(character, getTokenType(context))
-                ;
+        return defaultHandle(character, getTokenType(context));
     }
 
     @Override

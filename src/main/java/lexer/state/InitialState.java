@@ -40,8 +40,7 @@ public class InitialState extends AbstractState {
         if (charAsString.matches(Constants.SEPARATOR)) {
             adjustContext(character);
             return new SeparatorState(context, consumer);
-        }
-        else return null;
+        } else return null;
     }
 
     @Override
