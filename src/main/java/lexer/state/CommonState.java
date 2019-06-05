@@ -3,7 +3,6 @@ package lexer.state;
 import lexer.Constants;
 import lexer.Context;
 import lexer.TokenConsumer;
-import lexer.TokenType;
 
 public class CommonState extends AbstractState implements LexerState {
 

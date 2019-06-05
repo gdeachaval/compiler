@@ -229,6 +229,26 @@ public class TestLexer {
         assertTokenList(result, expected);
     }
 
+    @Test
+    public void test013IdentifierWithSpaces() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("a + a");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        Token first = new TokenImpl(1, 0, "a", TokenType.IDENTIFIER);
+        Token second = new TokenImpl(2, 0, " ", TokenType.SPACE);
+        Token third = new TokenImpl(3, 0, "+", TokenType.PLUS);
+        Token fourth = new TokenImpl(4, 0, " ", TokenType.SPACE);
+        Token fifth = new TokenImpl(5, 0, "a", TokenType.IDENTIFIER);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth);
+        List<Token> result = consumer.getResult();
+
+        assertTokenList(result, expected);
+    }
+
     private void assertTokens(Token actual, Token expected) {
         assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));
         assertThat(actual.getLine(), is(equalTo(expected.getLine())));

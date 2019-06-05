@@ -18,23 +18,7 @@ public class NumberState extends AbstractState implements LexerState {
             adjustContext(character);
             return new NumberState(context, consumer);
         }
-        if (charAsString.matches(Constants.OPERATOR)) {
-            generateToken(TokenType.NUMBER);
-            adjustContext(character);
-            return new OperatorState(context, consumer);
-        }
-        if (charAsString.matches(Constants.SPACE)) {
-            generateToken(TokenType.NUMBER);
-            adjustContext(character);
-            return new SpaceState(context, consumer);
-        }
-        if (charAsString.matches(Constants.NOT_A_NUMBER)) {
-            generateToken(TokenType.NUMBER);
-            adjustContext(character);
-            return new CommonState(context, consumer);
-        }
-
-        return null;
+        return defaultHandle(character, TokenType.NUMBER);
     }
 
     @Override

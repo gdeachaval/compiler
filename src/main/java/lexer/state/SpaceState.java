@@ -17,21 +17,11 @@ public class SpaceState extends AbstractState implements LexerState {
             adjustContext(character);
             return new SpaceState(context, consumer);
         }
-        if (charAsString.matches(Constants.OPERATOR)) {
-            generateToken(TokenType.SPACE);
-            adjustContext(character);
-            return new OperatorState(context, consumer);
-        }
-        if (charAsString.matches(Constants.NUMBER)) {
-            generateToken(TokenType.SPACE);
-            adjustContext(character);
-            return new NumberState(context, consumer);
-        }
-        return null;
+        return defaultHandle(character, TokenType.SPACE);
     }
 
     @Override
     public void end() {
-        // ignore
+        generateToken(TokenType.SPACE);
     }
 }
