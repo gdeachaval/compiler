@@ -21,7 +21,7 @@ public class StringState extends AbstractState implements LexerState {
         if (charAsString.matches(Constants.DOUBLE_QUOTE)) {
             adjustContext(character);
             generateToken(TokenType.STRING);
-            return new CommonState(context, consumer);
+            return new InitialState(context, consumer);
         }
         return null;
     }

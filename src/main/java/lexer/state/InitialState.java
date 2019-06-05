@@ -4,9 +4,9 @@ import lexer.Constants;
 import lexer.Context;
 import lexer.TokenConsumer;
 
-public class CommonState extends AbstractState implements LexerState {
+public class InitialState extends AbstractState implements LexerState {
 
-    public CommonState(Context context, TokenConsumer consumer) {
+    public InitialState(Context context, TokenConsumer consumer) {
         super(context, consumer);
     }
 

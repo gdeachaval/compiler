@@ -1,6 +1,6 @@
 package lexer;
 
-import lexer.state.CommonState;
+import lexer.state.InitialState;
 import lexer.state.LexerState;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ public class TestLexer {
     public void setup() {
         consumer = new TokenConsumer();
         Context context = new ContextImpl();
-        LexerState state = new CommonState(context, consumer);
+        LexerState state = new InitialState(context, consumer);
         lexer = new LexerAutomaton(state);
     }
 
