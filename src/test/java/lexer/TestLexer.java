@@ -254,6 +254,107 @@ public class TestLexer {
         assertTokenList(result, expected);
     }
 
+    @Test
+    public void test014SingleNewLine() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("\n");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        Token result = consumer.getResult().get(0);
+        Token expected = new TokenImpl(0, 1, "\n", TokenType.NEW_LINE);
+
+        assertTokens(result, expected);
+    }
+
+    @Test
+    public void test015NewLineThenIdentifier() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("\na");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(0, 1, "\n", TokenType.NEW_LINE);
+        Token second = new TokenImpl(1, 1, "a", TokenType.IDENTIFIER);
+        List<Token> expected = Arrays.asList(first, second);
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test016SimpleAssignationDeclaration() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("let foo=2");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(3, 0, "let", TokenType.LET);
+        Token second = new TokenImpl(4, 0, " ", TokenType.SPACE);
+        Token third = new TokenImpl(7, 0, "foo", TokenType.IDENTIFIER);
+        Token fourth = new TokenImpl(8, 0, "=", TokenType.EQUALS);
+        Token fifth = new TokenImpl(9, 0, "2", TokenType.NUMBER);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth);
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test016SimpleAssignationDeclarationSpaced() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("let foo = 2");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(3, 0, "let", TokenType.LET);
+        Token second = new TokenImpl(4, 0, " ", TokenType.SPACE);
+        Token third = new TokenImpl(7, 0, "foo", TokenType.IDENTIFIER);
+        Token fourth = new TokenImpl(8, 0, " ", TokenType.SPACE);
+        Token fifth = new TokenImpl(9, 0, "=", TokenType.EQUALS);
+        Token sixth = new TokenImpl(10, 0, " ", TokenType.SPACE);
+        Token seventh = new TokenImpl(11, 0, "2", TokenType.NUMBER);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test017SimpleAssignationDeclarationWithType() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("let foo:number = 2+2");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(3, 0, "let", TokenType.LET);
+        Token second = new TokenImpl(4, 0, " ", TokenType.SPACE);
+        Token third = new TokenImpl(7, 0, "foo", TokenType.IDENTIFIER);
+        Token fourth = new TokenImpl(8, 0, ":", TokenType.COLON);
+        Token fifth = new TokenImpl(14, 0, "number", TokenType.NUMBER_TYPE);
+        Token sixth = new TokenImpl(15, 0, " ", TokenType.SPACE);
+        Token seventh = new TokenImpl(16, 0, "=", TokenType.EQUALS);
+        Token eight = new TokenImpl(17, 0, " ", TokenType.SPACE);
+        Token ninth = new TokenImpl(18, 0, "2", TokenType.NUMBER);
+        Token tenth = new TokenImpl(19, 0, "+", TokenType.PLUS);
+        Token eleventh = new TokenImpl(20, 0, "2", TokenType.NUMBER);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh, eight, ninth, tenth, eleventh);
+
+        assertTokenList(result, expected);
+    }
+
+
     private void assertTokens(Token actual, Token expected) {
         assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));
         assertThat(actual.getLine(), is(equalTo(expected.getLine())));

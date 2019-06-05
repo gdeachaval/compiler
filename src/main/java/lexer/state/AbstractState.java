@@ -21,6 +21,12 @@ abstract class AbstractState implements LexerState {
         context.setAccum(context.getAccum() + character);
     }
 
+    void adjustContextNewLine(Character character) {
+        context.setLine(context.getLine() + 1);
+        context.setColumn(0);
+        context.setAccum(context.getAccum() + character);
+    }
+
     void generateToken(TokenType tokenType) {
         Token token = new TokenImpl(context.getColumn(), context.getLine(), context.getAccum(), tokenType);
         consumer.accept(token);
@@ -29,7 +35,7 @@ abstract class AbstractState implements LexerState {
 
     LexerState defaultHandle(Character character, TokenType self) {
         String charAsString = character.toString();
-        if (charAsString.matches(Constants.SPACE)) {
+        if (charAsString.matches(Constants.SEPARATOR)) {
             generateToken(self);
             adjustContext(character);
             return new SeparatorState(context, consumer);
@@ -48,6 +54,11 @@ abstract class AbstractState implements LexerState {
             generateToken(self);
             adjustContext(character);
             return new IdentifierState(context, consumer);
+        }
+        if (charAsString.matches(Constants.SPACE)) {
+            generateToken(self);
+            adjustContext(character);
+            return new SpaceState(context, consumer);
         }
         return null;
     }

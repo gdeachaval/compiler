@@ -5,7 +5,7 @@ public class ContextImpl implements Context {
     private int line;
     private int column;
 
-    ContextImpl() {
+    public ContextImpl() {
         this.accum = "";
         this.line = 0;
         this.column = 0;

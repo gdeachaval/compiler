@@ -8,11 +8,16 @@ public class TestConstants {
 
     @Test
     public void testSeparators() {
-        assertTrue("\n".matches(Constants.SEPARATOR));
-        assertTrue(" ".matches(Constants.SEPARATOR));
-        assertTrue("\t".matches(Constants.SEPARATOR));
         assertTrue(";".matches(Constants.SEPARATOR));
         assertTrue(":".matches(Constants.SEPARATOR));
+        assertTrue("=".matches(Constants.SEPARATOR));
+    }
+
+    @Test
+    public void testSpaces() {
+        assertTrue("\n".matches(Constants.SPACE));
+        assertTrue(" ".matches(Constants.SPACE));
+        assertTrue("\t".matches(Constants.SPACE));
     }
 
     @Test

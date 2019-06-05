@@ -29,10 +29,19 @@ public class InitialState extends AbstractState {
             adjustContext(character);
             return new OperatorState(context, consumer);
         }
+        if (charAsString.matches(Constants.NEW_LINE)) {
+            adjustContextNewLine(character);
+            return new SpaceState(context, consumer);
+        }
         if (charAsString.matches(Constants.SPACE)) {
             adjustContext(character);
+            return new SpaceState(context, consumer);
+        }
+        if (charAsString.matches(Constants.SEPARATOR)) {
+            adjustContext(character);
             return new SeparatorState(context, consumer);
-        } else return null;
+        }
+        else return null;
     }
 
     @Override
