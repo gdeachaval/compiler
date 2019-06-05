@@ -1,4 +1,4 @@
-package lexer;
+package lexer.state.context;
 
 public interface Context {
     String getAccum();
@@ -9,7 +9,7 @@ public interface Context {
 
     void setAccum(String string);
 
-    void addLine();
+    void setLine(int line);
 
-    void addColumn();
+    void setColumn(int column);
 }

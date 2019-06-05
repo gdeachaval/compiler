@@ -1,10 +1,10 @@
 package lexer.state;
 
 import lexer.Constants;
-import lexer.Context;
 import lexer.TokenConsumer;
+import lexer.state.context.Context;
 
-public class InitialState extends AbstractState implements LexerState {
+public class InitialState extends AbstractState {
 
     public InitialState(Context context, TokenConsumer consumer) {
         super(context, consumer);
@@ -31,9 +31,8 @@ public class InitialState extends AbstractState implements LexerState {
         }
         if (charAsString.matches(Constants.SPACE)) {
             adjustContext(character);
-            return new SpaceState(context, consumer);
-        }
-        else return null;
+            return new SeparatorState(context, consumer);
+        } else return null;
     }
 
     @Override

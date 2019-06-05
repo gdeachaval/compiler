@@ -2,6 +2,11 @@ package lexer;
 
 import lexer.state.InitialState;
 import lexer.state.LexerState;
+import lexer.state.context.Context;
+import lexer.state.context.ContextImpl;
+import lexer.token.Token;
+import lexer.token.TokenImpl;
+import lexer.token.TokenType;
 import org.junit.Before;
 import org.junit.Test;
 

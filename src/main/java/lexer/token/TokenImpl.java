@@ -1,4 +1,4 @@
-package lexer;
+package lexer.token;
 
 public class TokenImpl implements Token {
     private int column;

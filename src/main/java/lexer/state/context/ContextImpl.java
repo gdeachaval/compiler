@@ -1,4 +1,4 @@
-package lexer;
+package lexer.state.context;
 
 public class ContextImpl implements Context {
     private String accum;
@@ -27,17 +27,17 @@ public class ContextImpl implements Context {
     }
 
     @Override
-    public void setAccum(String string) {
-        accum = string;
+    public void setAccum(String accum) {
+        this.accum = accum;
     }
 
     @Override
-    public void addLine() {
-        line++;
+    public void setLine(int line) {
+        this.line = line;
     }
 
     @Override
-    public void addColumn() {
-        column++;
+    public void setColumn(int column) {
+        this.column = column;
     }
 }

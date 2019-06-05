@@ -1,13 +1,13 @@
 package lexer.state;
 
 import lexer.Constants;
-import lexer.Context;
-import lexer.Token;
 import lexer.TokenConsumer;
-import lexer.TokenImpl;
-import lexer.TokenType;
+import lexer.state.context.Context;
+import lexer.token.Token;
+import lexer.token.TokenImpl;
+import lexer.token.TokenType;
 
-abstract class AbstractState {
+abstract class AbstractState implements LexerState {
     Context context;
     TokenConsumer consumer;
 
@@ -17,7 +17,7 @@ abstract class AbstractState {
     }
 
     void adjustContext(Character character) {
-        context.addColumn();
+        context.setColumn(context.getColumn() + 1);
         context.setAccum(context.getAccum() + character);
     }
 
@@ -32,7 +32,7 @@ abstract class AbstractState {
         if (charAsString.matches(Constants.SPACE)) {
             generateToken(self);
             adjustContext(character);
-            return new SpaceState(context, consumer);
+            return new SeparatorState(context, consumer);
         }
         if (charAsString.matches(Constants.OPERATOR)) {
             generateToken(self);

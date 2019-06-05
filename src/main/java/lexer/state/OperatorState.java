@@ -1,11 +1,11 @@
 package lexer.state;
 
 import lexer.Constants;
-import lexer.Context;
 import lexer.TokenConsumer;
-import lexer.TokenType;
+import lexer.state.context.Context;
+import lexer.token.TokenType;
 
-public class OperatorState extends AbstractState implements LexerState {
+public class OperatorState extends AbstractState {
 
     OperatorState(Context context, TokenConsumer consumer) {
         super(context, consumer);
@@ -19,7 +19,8 @@ public class OperatorState extends AbstractState implements LexerState {
             return new OperatorState(context, consumer);
         }
         return defaultHandle(character, getTokenType(context))
-;    }
+                ;
+    }
 
     @Override
     public void end() {

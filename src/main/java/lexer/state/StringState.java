@@ -1,11 +1,11 @@
 package lexer.state;
 
 import lexer.Constants;
-import lexer.Context;
 import lexer.TokenConsumer;
-import lexer.TokenType;
+import lexer.state.context.Context;
+import lexer.token.TokenType;
 
-public class StringState extends AbstractState implements LexerState {
+public class StringState extends AbstractState {
 
     StringState(Context context, TokenConsumer consumer) {
         super(context, consumer);
