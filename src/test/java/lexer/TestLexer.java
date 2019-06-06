@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -350,6 +351,43 @@ public class TestLexer {
         Token tenth = new TokenImpl(19, 0, "+", TokenType.PLUS);
         Token eleventh = new TokenImpl(20, 0, "2", TokenType.NUMBER);
         List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh, eight, ninth, tenth, eleventh);
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test018SimplePrint() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("print");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
+        List<Token> expected = Collections.singletonList(first);
+
+        assertTokenList(result, expected);
+    }
+
+    @Test
+    public void test018SimplePrintWithExpression() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("print(2+2)");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
+        Token second = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
+        Token third = new TokenImpl(7, 0, "2", TokenType.NUMBER);
+        Token fourth = new TokenImpl(8, 0, "+", TokenType.PLUS);
+        Token fifth = new TokenImpl(9, 0, "2", TokenType.NUMBER);
+        Token sixth = new TokenImpl(10, 0, ")", TokenType.RPARENTHESIS);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth);
 
         assertTokenList(result, expected);
     }

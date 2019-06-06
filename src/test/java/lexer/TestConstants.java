@@ -11,6 +11,8 @@ public class TestConstants {
         assertTrue(";".matches(Constants.SEPARATOR));
         assertTrue(":".matches(Constants.SEPARATOR));
         assertTrue("=".matches(Constants.SEPARATOR));
+        assertTrue("(".matches(Constants.SEPARATOR));
+        assertTrue(")".matches(Constants.SEPARATOR));
     }
 
     @Test

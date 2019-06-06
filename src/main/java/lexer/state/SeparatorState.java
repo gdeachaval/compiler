@@ -36,6 +36,12 @@ public class SeparatorState extends AbstractState {
         if (accum.equals("=")) {
             return TokenType.EQUALS;
         }
+        if (accum.equals("(")) {
+            return TokenType.LPARENTHESIS;
+        }
+        if (accum.equals(")")) {
+            return TokenType.RPARENTHESIS;
+        }
         return null;
     }
 }
