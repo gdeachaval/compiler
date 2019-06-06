@@ -1,6 +1,7 @@
 package lexer.state;
 
 import lexer.Constants;
+import lexer.LexerException;
 import lexer.TokenConsumer;
 import lexer.state.context.Context;
 import lexer.token.Token;
@@ -60,6 +61,6 @@ abstract class AbstractState implements LexerState {
             adjustContext(character);
             return new SpaceState(context, consumer);
         }
-        return null;
+        throw new LexerException(context);
     }
 }

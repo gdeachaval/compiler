@@ -1,6 +1,7 @@
 package lexer.state;
 
 import lexer.Constants;
+import lexer.LexerException;
 import lexer.TokenConsumer;
 import lexer.state.context.Context;
 
@@ -40,7 +41,8 @@ public class InitialState extends AbstractState {
         if (charAsString.matches(Constants.SEPARATOR)) {
             adjustContext(character);
             return new SeparatorState(context, consumer);
-        } else return null;
+        }
+        throw new LexerException(context);
     }
 
     @Override

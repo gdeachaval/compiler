@@ -15,7 +15,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static junit.framework.TestCase.assertNotNull;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
@@ -391,6 +393,22 @@ public class TestLexer {
 
         assertTokenList(result, expected);
     }
+
+    @Test
+    public void test019SimpleException() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("$");
+
+        try {
+            // when
+            lexer.lex(supplier);
+        } catch (LexerException e) {
+            //then
+            assertNotNull(e.getMessage());
+            assertThat(e.getMessage(), containsString("line: 0 and column: 0"));
+        }
+    }
+
 
 
     private void assertTokens(Token actual, Token expected) {
