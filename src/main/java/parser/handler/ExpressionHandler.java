@@ -14,6 +14,8 @@ import parser.rules.Rule;
 import java.util.List;
 import java.util.Optional;
 
+import static java.lang.Integer.parseInt;
+
 public class ExpressionHandler extends AbstractHandler {
 
     public ExpressionHandler(Rule rule) {
@@ -31,7 +33,7 @@ public class ExpressionHandler extends AbstractHandler {
 
     private ASTNode parseValue(Token token) {
         TokenType tokenType = token.getType();
-        if (tokenType.equals(TokenType.NUMBER)) return new NumberNode(Integer.parseInt(token.getValue()));
+        if (tokenType.equals(TokenType.NUMBER)) return new NumberNode(parseInt(token.getValue()));
         if (tokenType.equals(TokenType.IDENTIFIER)) return new IdentifierNode(token.getValue());
         if (tokenType.equals(TokenType.STRING)) return new StringNode(token.getValue());
         throw new ParseException("Not a valid expression");
@@ -39,11 +41,14 @@ public class ExpressionHandler extends AbstractHandler {
 
     private Optional<ASTNode> parseOperation(List<Token> tokens) {
         final Token first = tokens.get(0);
+        final Token operator = tokens.get(1);
         final Token second = tokens.get(2);
 
         if (first.getType().equals(TokenType.STRING) || second.getType().equals(TokenType.STRING)) {
             return Optional.of(new StringConcatenationNode(first.getValue(), second.getValue()));
         }
-        return Optional.of(new ArithmeticOperationNode(Integer.parseInt(first.getValue()), Integer.parseInt(second.getValue()), tokens.get(1).getValue()));
+        // nodos?
+        ArithmeticOperationNode result = new ArithmeticOperationNode(parseInt(first.getValue()), parseInt(second.getValue()), operator.getValue());
+        return Optional.of(result);
     }
 }

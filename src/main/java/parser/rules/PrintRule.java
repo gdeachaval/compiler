@@ -11,6 +11,7 @@ public class PrintRule extends AbstractRule {
     public boolean matches(List<TokenType> statement) {
         return startsWith(statement, TokenType.PRINT) &&
                 secondIs(statement, TokenType.LPARENTHESIS) &&
-                endsWith(statement, TokenType.RPARENTHESIS);
+                endsWith(statement, TokenType.RPARENTHESIS) &&
+                sizeBiggerOrEqualThan(statement, 3);
     }
 }

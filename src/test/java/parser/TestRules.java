@@ -55,11 +55,13 @@ public class TestRules {
 
     @Test
     public void test004MatchSimpleAssignationDeclaration() {
-        List<TokenType> simpleAssignation = Arrays.asList(
+        List<TokenType> simpleAssignationDeclaration = Arrays.asList(
                 TokenType.LET,
                 TokenType.IDENTIFIER,
+                TokenType.COLON,
+                TokenType.STRING_TYPE,
                 TokenType.EQUALS,
                 TokenType.NUMBER);
-        assertTrue(assignationDeclarationRule.matches(simpleAssignation));
+        assertTrue(assignationDeclarationRule.matches(simpleAssignationDeclaration));
     }
 }

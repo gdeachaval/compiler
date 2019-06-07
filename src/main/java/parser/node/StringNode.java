@@ -6,8 +6,4 @@ public class StringNode extends AbstractNode {
     public StringNode(String value) {
         this.value = value;
     }
-
-    public String getValue() {
-        return value;
-    }
 }

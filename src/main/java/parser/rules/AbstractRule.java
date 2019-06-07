@@ -1,7 +1,6 @@
 package parser.rules;
 
 import lexer.token.TokenType;
-import parser.ParseException;
 
 import java.util.List;
 
@@ -24,10 +23,14 @@ abstract class AbstractRule implements Rule {
     }
 
     boolean secondIs(List<TokenType> statement, TokenType tokenType) {
-        try {
-            return statement.get(1).equals(tokenType);
-        } catch (IndexOutOfBoundsException e) {
-            throw new ParseException("Badly formed print");
-        }
+        return statement.get(1).equals(tokenType);
+    }
+
+    boolean sizeBiggerOrEqualThan(List<TokenType> statement, int size) {
+        return statement.size() >= size;
+    }
+
+    boolean containsTypes(List<TokenType> statement) {
+        return statement.stream().anyMatch(st -> st.equals(TokenType.STRING_TYPE) || st.equals(TokenType.NUMBER_TYPE));
     }
 }

@@ -10,6 +10,8 @@ public class DeclarationRule extends AbstractRule {
     @Override
     public boolean matches(List<TokenType> statement) {
         return startsWith(statement, TokenType.LET) &&
-                doesntContain(statement, TokenType.EQUALS);
+                secondIs(statement, TokenType.IDENTIFIER) &&
+                doesntContain(statement, TokenType.EQUALS) &&
+                sizeBiggerOrEqualThan(statement, 2);
     }
 }

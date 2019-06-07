@@ -11,6 +11,8 @@ public class AssignationDeclarationRule extends AbstractRule {
     public boolean matches(List<TokenType> statement) {
         return startsWith(statement, TokenType.LET) &&
                 contains(statement, TokenType.EQUALS) &&
-                doesntContain(statement, TokenType.PRINT);
+                containsTypes(statement) &&
+                doesntContain(statement, TokenType.PRINT) &&
+                sizeBiggerOrEqualThan(statement, 4);
     }
 }
