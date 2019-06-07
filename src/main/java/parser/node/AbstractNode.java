@@ -12,14 +12,4 @@ public abstract class AbstractNode implements ASTNode {
     AbstractNode() {
         children = new ArrayList<>();
     }
-
-    @Override
-    public void addChild(ASTNode child) {
-        children.add(child);
-    }
-
-    @Override
-    public List<ASTNode> getChildren() {
-        return children;
-    }
 }

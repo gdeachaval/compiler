@@ -1,26 +1,24 @@
-package parser.handler;
+package parser;
 
 import lexer.token.Token;
 import lexer.token.TokenType;
-import parser.ASTNode;
-import parser.ParseException;
 import parser.node.ProgramNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgramHandler {
-    private StatementHandler statementHandler;
+class ProgramController {
+    private StatementController statementController;
 
-    public ProgramHandler() {
-        this.statementHandler = new StatementHandler();
+    ProgramController() {
+        this.statementController = new StatementController();
     }
 
-    public ASTNode handle(List<Token> tokens) {
+    ProgramNode parseProgram(List<Token> program) {
         ProgramNode programNode = new ProgramNode();
-        getStatementsFromProgram(tokens)
+        getStatementsFromProgram(program)
                 .forEach(statement -> {
-                    ASTNode statementNode = statementHandler.handle(statement);
+                    ASTNode statementNode = statementController.parseStatement(statement);
                     programNode.addChild(statementNode);
                 });
         return programNode;

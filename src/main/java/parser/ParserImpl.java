@@ -2,7 +2,7 @@ package parser;
 
 import lexer.token.Token;
 import lexer.token.TokenType;
-import parser.handler.ProgramHandler;
+import parser.node.ProgramNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +10,10 @@ import java.util.List;
 public class ParserImpl implements Parser {
 
     @Override
-    public ASTNode parse(List<Token> program) {
-        ProgramHandler programHandler = new ProgramHandler();
+    public ProgramNode parse(List<Token> program) {
+        ProgramController programController = new ProgramController();
         ArrayList<Token> filteredProgram = removeSpaces(program);
-        return programHandler.handle(filteredProgram);
+        return programController.parseProgram(filteredProgram);
     }
 
     private ArrayList<Token> removeSpaces(List<Token> program) {

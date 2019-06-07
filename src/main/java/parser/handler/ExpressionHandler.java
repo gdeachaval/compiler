@@ -9,28 +9,19 @@ import parser.node.IdentifierNode;
 import parser.node.NumberNode;
 import parser.node.StringConcatenationNode;
 import parser.node.StringNode;
-import parser.rules.ExpressionRule;
+import parser.rules.Rule;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ExpressionHandler extends AbstractHandler {
 
-    private ExpressionRule expressionRule;
-
-    ExpressionHandler() {
-        this.expressionRule = new ExpressionRule();
+    public ExpressionHandler(Rule rule) {
+        super(rule);
     }
 
     @Override
-    public Optional<ASTNode> handle(List<Token> tokens) {
-        if (!expressionRule.matches(getTokenTypes(tokens))) {
-            return Optional.empty();
-        }
-        return handleInternal(tokens);
-    }
-
-    private Optional<ASTNode> handleInternal(List<Token> tokens) {
+    Optional<ASTNode> handleInternal(List<Token> tokens) {
         if (tokens.size() == 1) {
             Token first = tokens.get(0);
             return Optional.of(parseValue(first));

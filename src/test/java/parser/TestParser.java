@@ -5,6 +5,7 @@ import lexer.token.TokenImpl;
 import lexer.token.TokenType;
 import org.junit.Before;
 import org.junit.Test;
+import parser.node.ProgramNode;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,7 @@ public class TestParser {
         Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
 
-        ASTNode programNode = parser.parse(simplePrint);
+        ProgramNode programNode = parser.parse(simplePrint);
         assertThat(programNode.getChildren(), hasSize(1));
     }
 
@@ -45,7 +46,7 @@ public class TestParser {
         Token fifth = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth);
 
-        ASTNode programNode = parser.parse(simplePrint);
+        ProgramNode programNode = parser.parse(simplePrint);
         assertThat(programNode.getChildren(), hasSize(1));
     }
 
@@ -72,7 +73,7 @@ public class TestParser {
         Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
 
-        ASTNode programNode = parser.parse(simplePrint);
+        ProgramNode programNode = parser.parse(simplePrint);
         assertThat(programNode.getChildren(), hasSize(1));
     }
 }
