@@ -6,9 +6,11 @@ import java.util.List;
 
 public class PrintRule extends AbstractRule {
 
-    // PRINT *
+    // PRINT ( * )
     @Override
     public boolean matches(List<TokenType> statement) {
-        return startsWith(statement, TokenType.PRINT);
+        return startsWith(statement, TokenType.PRINT) &&
+                secondIs(statement, TokenType.LPARENTHESIS) &&
+                endsWith(statement, TokenType.RPARENTHESIS);
     }
 }

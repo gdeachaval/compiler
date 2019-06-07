@@ -1,5 +1,8 @@
 package parser;
 
-public interface ASTNode {
+import java.util.List;
 
+public interface ASTNode {
+    void addChild(ASTNode child);
+    List<ASTNode> getChildren();
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Parser {
 
-    void parse(List<Token> tokens);
+    ASTNode parse(List<Token> tokens);
 }
