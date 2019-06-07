@@ -3,7 +3,6 @@ package parser.handler;
 import lexer.token.Token;
 import parser.ASTNode;
 import parser.node.AssignationDeclarationNode;
-import parser.rules.ExpressionRule;
 import parser.rules.Rule;
 
 import java.util.List;
@@ -13,9 +12,9 @@ public class AssignationDeclarationHandler extends AbstractHandler {
 
     private ExpressionHandler expressionHandler;
 
-    public AssignationDeclarationHandler(Rule rule) {
+    public AssignationDeclarationHandler(Rule rule, ExpressionHandler expressionHandler) {
         super(rule);
-        this.expressionHandler = new ExpressionHandler(new ExpressionRule());
+        this.expressionHandler = expressionHandler;
     }
 
     @Override

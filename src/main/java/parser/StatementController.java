@@ -4,10 +4,12 @@ import lexer.token.Token;
 import parser.handler.AssignationDeclarationHandler;
 import parser.handler.AssignationHandler;
 import parser.handler.DeclarationHandler;
+import parser.handler.ExpressionHandler;
 import parser.handler.PrintHandler;
 import parser.rules.AssignationDeclarationRule;
 import parser.rules.AssignationRule;
 import parser.rules.DeclarationRule;
+import parser.rules.ExpressionRule;
 import parser.rules.PrintRule;
 
 import java.util.List;
@@ -21,10 +23,11 @@ class StatementController {
     private AssignationDeclarationHandler assignationDeclarationHandler;
 
     StatementController() {
-        printHandler = new PrintHandler(new PrintRule());
+        ExpressionHandler expressionHandler = new ExpressionHandler(new ExpressionRule());
+        printHandler = new PrintHandler(new PrintRule(), expressionHandler);
         declarationHandler = new DeclarationHandler(new DeclarationRule());
-        assignationHandler = new AssignationHandler(new AssignationRule());
-        assignationDeclarationHandler = new AssignationDeclarationHandler(new AssignationDeclarationRule());
+        assignationHandler = new AssignationHandler(new AssignationRule(), expressionHandler);
+        assignationDeclarationHandler = new AssignationDeclarationHandler(new AssignationDeclarationRule(), expressionHandler);
     }
 
     ASTNode parseStatement(List<Token> statement) {
