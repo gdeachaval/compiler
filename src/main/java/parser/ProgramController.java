@@ -8,10 +8,10 @@ import parser.node.ProgramNode;
 import java.util.ArrayList;
 import java.util.List;
 
-class ProgramController {
+public class ProgramController {
     private StatementController statementController;
 
-    ProgramController() {
+    public ProgramController() {
         this.statementController = new StatementController();
     }
 

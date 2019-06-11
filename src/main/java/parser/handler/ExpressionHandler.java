@@ -2,10 +2,9 @@ package parser.handler;
 
 import lexer.token.Token;
 import lexer.token.TokenType;
-import parser.node.ASTExpressionNode;
-import parser.node.ASTNode;
 import parser.Operator;
 import parser.ParseException;
+import parser.node.ASTExpressionNode;
 import parser.node.ArithmeticOperationNode;
 import parser.node.IdentifierNode;
 import parser.node.NumberNode;
@@ -18,7 +17,7 @@ import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
-public class ExpressionHandler extends AbstractExpressionHandler {
+public class ExpressionHandler extends AbstractHandler<ASTExpressionNode> {
 
     public ExpressionHandler(Rule rule) {
         super(rule);

@@ -3,7 +3,7 @@ package parser.node;
 
 import interpreter.ASTNodeVisitor;
 
-public class PrintNode extends AbstractNode {
+public class PrintNode implements ASTNode {
     private ASTExpressionNode expression;
 
     public PrintNode(ASTExpressionNode expression) {

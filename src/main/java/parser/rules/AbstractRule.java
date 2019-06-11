@@ -1,10 +1,7 @@
 package parser.rules;
 
-import lexer.token.Token;
 import lexer.token.TokenType;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 abstract class AbstractRule implements Rule {

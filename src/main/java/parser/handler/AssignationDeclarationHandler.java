@@ -9,7 +9,7 @@ import parser.rules.Rule;
 import java.util.List;
 import java.util.Optional;
 
-public class AssignationDeclarationHandler extends AbstractHandler {
+public class AssignationDeclarationHandler extends AbstractHandler<ASTNode> {
 
     private ExpressionHandler expressionHandler;
 

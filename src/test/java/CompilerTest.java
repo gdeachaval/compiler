@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import parser.Parser;
 import parser.ParserImpl;
+import parser.ProgramController;
 
 public class CompilerTest {
 
@@ -18,7 +19,7 @@ public class CompilerTest {
     public void setUp() {
         TokenConsumer consumer = new TokenConsumer();
         Lexer lexer = new LexerAutomaton(consumer);
-        Parser parser = new ParserImpl();
+        Parser parser = new ParserImpl(new ProgramController());
         Interpreter interpreter = new InterpreterImpl();
 
         compiler = new CompilerImpl(lexer, parser, interpreter);
@@ -37,10 +38,5 @@ public class CompilerTest {
     @Test
     public void testSimpleCompilation004() {
         compiler.compile("print(\"foo\") ;");
-    }
-
-    @Test
-    public void testSimpleCompilation005() {
-        compiler.compile("let a ;\na = 2 ;\nlet b ;\nb = \"b\" ;\nprint(a) ;\nprint(b) ;");
     }
 }

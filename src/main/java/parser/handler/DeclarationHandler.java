@@ -8,7 +8,7 @@ import parser.rules.Rule;
 import java.util.List;
 import java.util.Optional;
 
-public class DeclarationHandler extends AbstractHandler {
+public class DeclarationHandler extends AbstractHandler<ASTNode> {
 
     public DeclarationHandler(Rule rule) {
         super(rule);

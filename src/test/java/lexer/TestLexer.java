@@ -403,28 +403,6 @@ public class TestLexer {
         }
     }
 
-    @Test
-    public void test020SimplePrintWithExpressionAndSemicolon() {
-        // given
-        Supplier<Character> supplier = new CharacterSupplier("print(2+2)");
-
-        // when
-        lexer.lex(supplier);
-
-        // then
-        List<Token> result = consumer.getResult();
-        Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
-        Token second = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
-        Token third = new TokenImpl(7, 0, "2", TokenType.NUMBER);
-        Token fourth = new TokenImpl(8, 0, "+", TokenType.PLUS);
-        Token fifth = new TokenImpl(9, 0, "2", TokenType.NUMBER);
-        Token sixth = new TokenImpl(10, 0, ")", TokenType.RPARENTHESIS);
-        Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
-        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
-
-        assertTokenList(result, expected);
-    }
-
 
 
     private void assertTokens(Token actual, Token expected) {

@@ -5,7 +5,7 @@ import interpreter.ASTNodeVisitor;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProgramNode extends AbstractNode {
+public class ProgramNode implements ASTNode {
     private List<ASTNode> children;
 
     public ProgramNode() {

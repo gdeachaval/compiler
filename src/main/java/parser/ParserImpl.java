@@ -9,9 +9,14 @@ import java.util.List;
 
 public class ParserImpl implements Parser {
 
+    private ProgramController programController;
+
+    public ParserImpl(ProgramController programController) {
+        this.programController = programController;
+    }
+
     @Override
     public ProgramNode parse(List<Token> program) {
-        ProgramController programController = new ProgramController();
         ArrayList<Token> filteredProgram = removeSpaces(program);
         return programController.parseProgram(filteredProgram);
     }

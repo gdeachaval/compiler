@@ -19,7 +19,7 @@ public class TestParser {
 
     @Before
     public void setUp() {
-        parser = new ParserImpl();
+        parser = new ParserImpl(new ProgramController());
     }
 
     @Test

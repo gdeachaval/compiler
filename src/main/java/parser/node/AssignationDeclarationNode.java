@@ -2,7 +2,7 @@ package parser.node;
 
 import interpreter.ASTNodeVisitor;
 
-public class AssignationDeclarationNode extends AbstractNode {
+public class AssignationDeclarationNode implements ASTNode {
     private String declarator;
     private String identifier;
     private ASTExpressionNode expression;
