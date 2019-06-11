@@ -4,9 +4,9 @@ package parser.node;
 import interpreter.ASTNodeVisitor;
 
 public class PrintNode extends AbstractNode {
-    private ExpressionNode expression;
+    private ASTExpressionNode expression;
 
-    public PrintNode(ExpressionNode expression) {
+    public PrintNode(ASTExpressionNode expression) {
         this.expression = expression;
     }
 
@@ -15,7 +15,7 @@ public class PrintNode extends AbstractNode {
         visitor.visit(this);
     }
 
-    public ExpressionNode getExpression() {
+    public ASTExpressionNode getExpression() {
         return expression;
     }
 }

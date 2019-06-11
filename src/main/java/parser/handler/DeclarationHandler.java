@@ -1,7 +1,7 @@
 package parser.handler;
 
 import lexer.token.Token;
-import parser.ASTNode;
+import parser.node.ASTNode;
 import parser.node.DeclarationNode;
 import parser.rules.Rule;
 

@@ -1,10 +1,9 @@
 package parser.node;
 
-import interpreter.ASTNodeVisitor;
 import interpreter.ExpressionVisitor;
 import parser.Operator;
 
-public class ArithmeticOperationNode extends ExpressionNode {
+public class ArithmeticOperationNode implements ASTExpressionNode {
     private int number1;
     private int number2;
     private Operator operator;
@@ -13,16 +12,6 @@ public class ArithmeticOperationNode extends ExpressionNode {
         this.number1 = number1;
         this.number2 = number2;
         this.operator = operator;
-    }
-
-    @Override
-    public void accept(ASTNodeVisitor visitor) {
-        visitor.visit(this);
-    }
-
-    @Override
-    public Integer accept(ExpressionVisitor expressionVisitor) {
-        return expressionVisitor.visitExpression(this);
     }
 
     public int getNumber1() {
@@ -35,5 +24,10 @@ public class ArithmeticOperationNode extends ExpressionNode {
 
     public Operator getOperator() {
         return operator;
+    }
+
+    @Override
+    public Object accept(ExpressionVisitor expressionVisitor) {
+        return expressionVisitor.visitExpression(this);
     }
 }

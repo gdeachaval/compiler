@@ -2,7 +2,8 @@ package parser.handler;
 
 import lexer.token.Token;
 import lexer.token.TokenType;
-import parser.ASTNode;
+import parser.node.ASTExpressionNode;
+import parser.node.ASTNode;
 import parser.Operator;
 import parser.ParseException;
 import parser.node.ArithmeticOperationNode;
@@ -17,14 +18,14 @@ import java.util.Optional;
 
 import static java.lang.Integer.parseInt;
 
-public class ExpressionHandler extends AbstractHandler {
+public class ExpressionHandler extends AbstractExpressionHandler {
 
     public ExpressionHandler(Rule rule) {
         super(rule);
     }
 
     @Override
-    Optional<ASTNode> handleInternal(List<Token> tokens) {
+    Optional<ASTExpressionNode> handleInternal(List<Token> tokens) {
         if (tokens.size() == 1) {
             Token first = tokens.get(0);
             return Optional.of(parseValue(first));
@@ -32,7 +33,7 @@ public class ExpressionHandler extends AbstractHandler {
         return Optional.of(parseOperation(tokens));
     }
 
-    private ASTNode parseValue(Token token) {
+    private ASTExpressionNode parseValue(Token token) {
         TokenType tokenType = token.getType();
         if (tokenType.equals(TokenType.NUMBER)) return new NumberNode(parseInt(token.getValue()));
         if (tokenType.equals(TokenType.IDENTIFIER)) return new IdentifierNode(token.getValue());
@@ -40,7 +41,7 @@ public class ExpressionHandler extends AbstractHandler {
         throw new ParseException("Not a valid expression");
     }
 
-    private ASTNode parseOperation(List<Token> tokens) {
+    private ASTExpressionNode parseOperation(List<Token> tokens) {
         final Token first = tokens.get(0);
         final Token operator = tokens.get(1);
         final Token second = tokens.get(2);

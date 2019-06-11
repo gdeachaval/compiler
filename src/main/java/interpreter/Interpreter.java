@@ -1,6 +1,6 @@
 package interpreter;
 
-import parser.ASTNode;
+import parser.node.ASTNode;
 
 public interface Interpreter {
 

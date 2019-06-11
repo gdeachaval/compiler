@@ -1,7 +1,8 @@
 package parser.handler;
 
 import lexer.token.Token;
-import parser.ASTNode;
+import parser.node.ASTExpressionNode;
+import parser.node.ASTNode;
 import parser.node.AssignationDeclarationNode;
 import parser.rules.Rule;
 
@@ -26,7 +27,7 @@ public class AssignationDeclarationHandler extends AbstractHandler {
         // skip equals
         List<Token> expressionTokens = tokens.subList(5, tokens.size());
 
-        Optional<ASTNode> expression = expressionHandler.handle(expressionTokens);
+        Optional<ASTExpressionNode> expression = expressionHandler.handle(expressionTokens);
 
         return expression.map(exp -> new AssignationDeclarationNode(declarator.getValue(), identifier.getValue(), exp, type.getValue()));
     }

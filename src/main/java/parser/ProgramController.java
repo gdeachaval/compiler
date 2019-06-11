@@ -2,6 +2,7 @@ package parser;
 
 import lexer.token.Token;
 import lexer.token.TokenType;
+import parser.node.ASTNode;
 import parser.node.ProgramNode;
 
 import java.util.ArrayList;

@@ -1,10 +1,10 @@
 package interpreter;
 
+import parser.node.ASTExpressionNode;
 import parser.node.ArithmeticOperationNode;
 import parser.node.AssignationDeclarationNode;
 import parser.node.AssignationNode;
 import parser.node.DeclarationNode;
-import parser.node.ExpressionNode;
 import parser.node.IdentifierNode;
 import parser.node.NumberNode;
 import parser.node.PrintNode;
@@ -26,6 +26,7 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
 
     @Override
     public void visit(ArithmeticOperationNode node) {
+
     }
 
     @Override
@@ -61,8 +62,11 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
 
     @Override
     public void visit(PrintNode node) {
-        ExpressionNode expression = node.getExpression();
-        expression.accept(expressionVisitor);
+        ASTExpressionNode expression = node.getExpression();
+        Object accept = expression.accept(expressionVisitor);
+        System.out.println(accept);
+
+
     }
 
     @Override

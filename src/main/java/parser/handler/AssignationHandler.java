@@ -1,7 +1,8 @@
 package parser.handler;
 
 import lexer.token.Token;
-import parser.ASTNode;
+import parser.node.ASTExpressionNode;
+import parser.node.ASTNode;
 import parser.node.AssignationNode;
 import parser.rules.Rule;
 
@@ -21,7 +22,7 @@ public class AssignationHandler extends AbstractHandler {
     Optional<ASTNode> handleInternal(List<Token> tokens) {
         Token identifier = tokens.get(0);
         // skip equals
-        Optional<ASTNode> expression = expressionHandler.handle(tokens.subList(2, tokens.size()));
+        Optional<ASTExpressionNode> expression = expressionHandler.handle(tokens.subList(2, tokens.size()));
 
         return expression.map(exp -> new AssignationNode(exp, identifier.getValue()));
     }

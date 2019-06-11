@@ -1,15 +1,14 @@
 package parser.node;
 
 import interpreter.ASTNodeVisitor;
-import parser.ASTNode;
 
 public class AssignationDeclarationNode extends AbstractNode {
     private String declarator;
     private String identifier;
-    private ASTNode expression;
+    private ASTExpressionNode expression;
     private String type;
 
-    public AssignationDeclarationNode(String declarator, String identifier, ASTNode expression, String type) {
+    public AssignationDeclarationNode(String declarator, String identifier, ASTExpressionNode expression, String type) {
         this.declarator = declarator;
         this.identifier = identifier;
         this.expression = expression;
@@ -29,7 +28,7 @@ public class AssignationDeclarationNode extends AbstractNode {
         return identifier;
     }
 
-    public ASTNode getExpression() {
+    public ASTExpressionNode getExpression() {
         return expression;
     }
 

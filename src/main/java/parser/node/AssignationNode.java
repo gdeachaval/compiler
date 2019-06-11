@@ -1,13 +1,12 @@
 package parser.node;
 
 import interpreter.ASTNodeVisitor;
-import parser.ASTNode;
 
 public class AssignationNode extends AbstractNode {
-    private ASTNode expression;
+    private ASTExpressionNode expression;
     private String identifier;
 
-    public AssignationNode(ASTNode expression, String identifier) {
+    public AssignationNode(ASTExpressionNode expression, String identifier) {
         this.expression = expression;
         this.identifier = identifier;
     }
@@ -17,7 +16,7 @@ public class AssignationNode extends AbstractNode {
         visitor.visit(this);
     }
 
-    public ASTNode getExpression() {
+    public ASTExpressionNode getExpression() {
         return expression;
     }
 

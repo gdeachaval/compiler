@@ -2,7 +2,10 @@ package interpreter;
 
 import parser.Operator;
 import parser.node.ArithmeticOperationNode;
+import parser.node.IdentifierNode;
+import parser.node.NumberNode;
 import parser.node.StringConcatenationNode;
+import parser.node.StringNode;
 
 public class ExpressionVisitorImpl implements ExpressionVisitor {
 
@@ -31,5 +34,20 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
         String value1 = node.getValue1();
         String value2 = node.getValue2();
         return value1 + value2;
+    }
+
+    @Override
+    public Integer visitExpression(NumberNode node) {
+        return node.getValue();
+    }
+
+    @Override
+    public String visitExpression(StringNode node) {
+        return node.getValue();
+    }
+
+    @Override
+    public String visitExpression(IdentifierNode node) {
+        return node.getValue();
     }
 }

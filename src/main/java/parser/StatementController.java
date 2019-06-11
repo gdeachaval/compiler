@@ -6,6 +6,7 @@ import parser.handler.AssignationHandler;
 import parser.handler.DeclarationHandler;
 import parser.handler.ExpressionHandler;
 import parser.handler.PrintHandler;
+import parser.node.ASTNode;
 import parser.rules.AssignationDeclarationRule;
 import parser.rules.AssignationRule;
 import parser.rules.DeclarationRule;

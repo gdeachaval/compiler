@@ -1,8 +1,8 @@
 package parser.node;
 
-import interpreter.ASTNodeVisitor;
+import interpreter.ExpressionVisitor;
 
-public class NumberNode extends AbstractNode {
+public class NumberNode implements ASTExpressionNode {
     private int value;
 
     public NumberNode(int value) {
@@ -13,8 +13,9 @@ public class NumberNode extends AbstractNode {
         return value;
     }
 
+
     @Override
-    public void accept(ASTNodeVisitor visitor) {
-        visitor.visit(this);
+    public Object accept(ExpressionVisitor expressionVisitor) {
+        return expressionVisitor.visitExpression(this);
     }
 }

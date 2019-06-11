@@ -1,16 +1,20 @@
 package parser.node;
 
-import interpreter.ASTNodeVisitor;
+import interpreter.ExpressionVisitor;
 
-public class IdentifierNode extends AbstractNode {
+public class IdentifierNode implements ASTExpressionNode {
     private String value;
 
     public IdentifierNode(String value) {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
-    public void accept(ASTNodeVisitor visitor) {
-        visitor.visit(this);
+    public Object accept(ExpressionVisitor expressionVisitor) {
+        return expressionVisitor.visitExpression(this);
     }
 }

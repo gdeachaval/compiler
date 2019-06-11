@@ -1,9 +1,8 @@
 package parser.node;
 
-import interpreter.ASTNodeVisitor;
 import interpreter.ExpressionVisitor;
 
-public class StringConcatenationNode extends ExpressionNode {
+public class StringConcatenationNode implements ASTExpressionNode {
     private String value1;
     private String value2;
 
@@ -12,21 +11,16 @@ public class StringConcatenationNode extends ExpressionNode {
         this.value2 = value2;
     }
 
-    @Override
-    public void accept(ASTNodeVisitor visitor) {
-        visitor.visit(this);
-    }
-
-    @Override
-    public String accept(ExpressionVisitor expressionVisitor) {
-        return expressionVisitor.visitExpression(this);
-    }
-
     public String getValue1() {
         return value1;
     }
 
     public String getValue2() {
         return value2;
+    }
+
+    @Override
+    public Object accept(ExpressionVisitor expressionVisitor) {
+        return expressionVisitor.visitExpression(this);
     }
 }
