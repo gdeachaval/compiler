@@ -1,9 +1,5 @@
 package lexer;
 
-import lexer.state.InitialState;
-import lexer.state.LexerState;
-import lexer.state.context.Context;
-import lexer.state.context.ContextImpl;
 import lexer.token.Token;
 import lexer.token.TokenImpl;
 import lexer.token.TokenType;
@@ -29,9 +25,7 @@ public class TestLexer {
     @Before
     public void setup() {
         consumer = new TokenConsumer();
-        Context context = new ContextImpl();
-        LexerState state = new InitialState(context, consumer);
-        lexer = new LexerAutomaton(state);
+        lexer = new LexerAutomaton(consumer);
     }
 
     @Test
@@ -40,11 +34,11 @@ public class TestLexer {
         Supplier<Character> supplier = new CharacterSupplier("\"test\"");
 
         // when
-        lexer.lex(supplier);
+        List<Token> lex = lexer.lex(supplier);
 
         // then
         Token expected = new TokenImpl(6, 0, "\"test\"", TokenType.STRING);
-        Token result = consumer.getResult().get(0);
+        Token result = lex.get(0);
 
         assertTokens(result, expected);
     }
@@ -408,6 +402,29 @@ public class TestLexer {
             assertThat(e.getMessage(), containsString("line: 0 and column: 0"));
         }
     }
+
+    @Test
+    public void test020SimplePrintWithExpressionAndSemicolon() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("print(2+2)");
+
+        // when
+        lexer.lex(supplier);
+
+        // then
+        List<Token> result = consumer.getResult();
+        Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
+        Token second = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
+        Token third = new TokenImpl(7, 0, "2", TokenType.NUMBER);
+        Token fourth = new TokenImpl(8, 0, "+", TokenType.PLUS);
+        Token fifth = new TokenImpl(9, 0, "2", TokenType.NUMBER);
+        Token sixth = new TokenImpl(10, 0, ")", TokenType.RPARENTHESIS);
+        Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
+        List<Token> expected = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
+
+        assertTokenList(result, expected);
+    }
+
 
 
 

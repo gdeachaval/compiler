@@ -10,7 +10,7 @@ public class TokenConsumer implements Consumer<Token> {
 
     private List<Token> tokenList;
 
-    TokenConsumer() {
+    public TokenConsumer() {
         tokenList = new ArrayList<>();
     }
 

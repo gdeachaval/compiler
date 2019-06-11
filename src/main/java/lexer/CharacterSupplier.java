@@ -6,7 +6,7 @@ public class CharacterSupplier implements Supplier<Character> {
     private String string;
     private int actual;
 
-    CharacterSupplier(String string) {
+    public CharacterSupplier(String string) {
         this.string = string;
         this.actual = 0;
     }

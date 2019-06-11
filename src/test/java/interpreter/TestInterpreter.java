@@ -61,4 +61,18 @@ public class TestInterpreter {
         programNode.addChild(printNode);
         interpreter.interpret(programNode);
     }
+
+    @Test (expected = InterpreterException.class)
+    public void testSimpleIdentifierNotDefined() {
+        String identifier = "two";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+        AssignationNode assignationNode = new AssignationNode(new NumberNode(2), identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(assignationNode);
+        programNode.addChild(declarationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
 }

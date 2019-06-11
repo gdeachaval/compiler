@@ -1,7 +1,10 @@
 package lexer;
 
+import lexer.token.Token;
+
+import java.util.List;
 import java.util.function.Supplier;
 
 public interface Lexer {
-    void lex(Supplier<Character> supplier);
+    List<Token> lex(Supplier<Character> supplier);
 }

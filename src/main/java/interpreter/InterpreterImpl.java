@@ -6,7 +6,7 @@ public class InterpreterImpl implements Interpreter {
 
     private ASTNodeVisitor astNodeVisitor;
 
-    InterpreterImpl() {
+    public InterpreterImpl() {
         astNodeVisitor = new ASTNodeVisitorImpl();
     }
 
