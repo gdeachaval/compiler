@@ -3,6 +3,8 @@ package parser.node;
 import interpreter.ExpressionVisitor;
 import parser.Operator;
 
+import java.util.Map;
+
 public class ArithmeticOperationNode implements ASTExpressionNode {
     private int number1;
     private int number2;
@@ -27,7 +29,7 @@ public class ArithmeticOperationNode implements ASTExpressionNode {
     }
 
     @Override
-    public Object accept(ExpressionVisitor expressionVisitor) {
+    public Object accept(ExpressionVisitor expressionVisitor, Map<String, Object> variableStack) {
         return expressionVisitor.visitExpression(this);
     }
 }

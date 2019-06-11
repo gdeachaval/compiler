@@ -7,6 +7,8 @@ import parser.node.NumberNode;
 import parser.node.StringConcatenationNode;
 import parser.node.StringNode;
 
+import java.util.Map;
+
 public class ExpressionVisitorImpl implements ExpressionVisitor {
 
     @Override
@@ -47,7 +49,11 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
     }
 
     @Override
-    public String visitExpression(IdentifierNode node) {
-        return node.getValue();
+    public Object visitExpression(IdentifierNode node, Map<String, Object> vars) {
+        String value = node.getValue();
+        if (vars.containsKey(value)) {
+            return vars.get(value);
+        }
+        throw new InterpreterException(value + " not defined yet");
     }
 }

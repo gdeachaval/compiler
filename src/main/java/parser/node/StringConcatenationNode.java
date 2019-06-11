@@ -2,6 +2,8 @@ package parser.node;
 
 import interpreter.ExpressionVisitor;
 
+import java.util.Map;
+
 public class StringConcatenationNode implements ASTExpressionNode {
     private String value1;
     private String value2;
@@ -20,7 +22,7 @@ public class StringConcatenationNode implements ASTExpressionNode {
     }
 
     @Override
-    public Object accept(ExpressionVisitor expressionVisitor) {
+    public Object accept(ExpressionVisitor expressionVisitor, Map<String, Object> variableStack) {
         return expressionVisitor.visitExpression(this);
     }
 }

@@ -2,6 +2,8 @@ package parser.node;
 
 import interpreter.ExpressionVisitor;
 
+import java.util.Map;
+
 public class IdentifierNode implements ASTExpressionNode {
     private String value;
 
@@ -14,7 +16,7 @@ public class IdentifierNode implements ASTExpressionNode {
     }
 
     @Override
-    public Object accept(ExpressionVisitor expressionVisitor) {
-        return expressionVisitor.visitExpression(this);
+    public Object accept(ExpressionVisitor expressionVisitor, Map<String, Object> variableStack) {
+        return expressionVisitor.visitExpression(this, variableStack);
     }
 }
