@@ -61,6 +61,11 @@ abstract class AbstractState implements LexerState {
             adjustContext(character);
             return new SpaceState(context, consumer);
         }
+        if (charAsString.matches(Constants.DOUBLE_QUOTE)) {
+            generateToken(self);
+            adjustContext(character);
+            return new StringState(context, consumer);
+        }
         throw new LexerException(context);
     }
 }

@@ -35,12 +35,12 @@ public class CompilerTest {
     }
 
     @Test
-    public void testSimpleCompilation003() {
-        compiler.compile("let a ;\na = 10/2 ;\nprint(a) ;");
+    public void testSimpleCompilation004() {
+        compiler.compile("print(\"foo\") ;");
     }
 
     @Test
-    public void testSimpleCompilation004() {
-        compiler.compile("let a ;\na=2 ;\nlet b ;\nb=3 ;\nprint(a+b) ;");
+    public void testSimpleCompilation005() {
+        compiler.compile("let a ;\na = 2 ;\nlet b ;\nb = \"b\" ;\nprint(a) ;\nprint(b) ;");
     }
 }
