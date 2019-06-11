@@ -1,5 +1,6 @@
 package parser.node;
 
+import interpreter.ASTNodeVisitor;
 import parser.ASTNode;
 
 import java.util.ArrayList;
@@ -18,5 +19,10 @@ public class ProgramNode extends AbstractNode {
 
     public List<ASTNode> getChildren() {
         return children;
+    }
+
+    @Override
+    public void accept(ASTNodeVisitor visitor) {
+        visitor.visit(this);
     }
 }

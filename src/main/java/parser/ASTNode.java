@@ -1,5 +1,7 @@
 package parser;
 
-public interface ASTNode {
+import interpreter.ASTNodeVisitor;
 
+public interface ASTNode {
+    void accept(ASTNodeVisitor visitor);
 }

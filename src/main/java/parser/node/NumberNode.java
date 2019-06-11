@@ -1,5 +1,7 @@
 package parser.node;
 
+import interpreter.ASTNodeVisitor;
+
 public class NumberNode extends AbstractNode {
     private int value;
 
@@ -9,5 +11,10 @@ public class NumberNode extends AbstractNode {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public void accept(ASTNodeVisitor visitor) {
+        visitor.visit(this);
     }
 }

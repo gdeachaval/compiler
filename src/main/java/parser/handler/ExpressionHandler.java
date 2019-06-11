@@ -3,6 +3,7 @@ package parser.handler;
 import lexer.token.Token;
 import lexer.token.TokenType;
 import parser.ASTNode;
+import parser.Operator;
 import parser.ParseException;
 import parser.node.ArithmeticOperationNode;
 import parser.node.IdentifierNode;
@@ -28,7 +29,7 @@ public class ExpressionHandler extends AbstractHandler {
             Token first = tokens.get(0);
             return Optional.of(parseValue(first));
         }
-        return parseOperation(tokens);
+        return Optional.of(parseOperation(tokens));
     }
 
     private ASTNode parseValue(Token token) {
@@ -39,16 +40,28 @@ public class ExpressionHandler extends AbstractHandler {
         throw new ParseException("Not a valid expression");
     }
 
-    private Optional<ASTNode> parseOperation(List<Token> tokens) {
+    private ASTNode parseOperation(List<Token> tokens) {
         final Token first = tokens.get(0);
         final Token operator = tokens.get(1);
         final Token second = tokens.get(2);
 
         if (first.getType().equals(TokenType.STRING) || second.getType().equals(TokenType.STRING)) {
-            return Optional.of(new StringConcatenationNode(first.getValue(), second.getValue()));
+            if (operator.getType().equals(TokenType.PLUS)) {
+                return new StringConcatenationNode(first.getValue(), second.getValue());
+            } else {
+                throw new ParseException("only string concat (+) supported");
+            }
         }
-        // nodos?
-        ArithmeticOperationNode result = new ArithmeticOperationNode(parseInt(first.getValue()), parseInt(second.getValue()), operator.getValue());
-        return Optional.of(result);
+        else return new ArithmeticOperationNode(parseInt(first.getValue()), parseInt(second.getValue()), toOperator(operator.getType()));
+    }
+
+    private Operator toOperator(TokenType tokenType) {
+        switch (tokenType) {
+            case PLUS: return Operator.PLUS;
+            case MINUS: return Operator.MINUS;
+            case MULTIPLY: return Operator.MULTIPLY;
+            case DIVIDE: return Operator.DIVIDE;
+            default: throw new ParseException("not an operator");
+        }
     }
 }

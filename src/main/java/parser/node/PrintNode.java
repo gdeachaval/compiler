@@ -1,12 +1,21 @@
 package parser.node;
 
 
-import parser.ASTNode;
+import interpreter.ASTNodeVisitor;
 
 public class PrintNode extends AbstractNode {
-    private ASTNode expression;
+    private ExpressionNode expression;
 
-    public PrintNode(ASTNode expression) {
+    public PrintNode(ExpressionNode expression) {
         this.expression = expression;
+    }
+
+    @Override
+    public void accept(ASTNodeVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    public ExpressionNode getExpression() {
+        return expression;
     }
 }

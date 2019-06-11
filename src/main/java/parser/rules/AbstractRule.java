@@ -1,7 +1,10 @@
 package parser.rules;
 
+import lexer.token.Token;
 import lexer.token.TokenType;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 abstract class AbstractRule implements Rule {
@@ -32,5 +35,9 @@ abstract class AbstractRule implements Rule {
 
     boolean containsTypes(List<TokenType> statement) {
         return statement.stream().anyMatch(st -> st.equals(TokenType.STRING_TYPE) || st.equals(TokenType.NUMBER_TYPE));
+    }
+
+    boolean oddAmount(List<TokenType> tokenTypes) {
+        return tokenTypes.size() % 2 == 1;
     }
 }
