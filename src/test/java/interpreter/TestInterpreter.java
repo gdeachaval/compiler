@@ -3,9 +3,11 @@ package interpreter;
 import org.junit.Before;
 import org.junit.Test;
 import parser.Operator;
+import parser.node.ASTExpressionNode;
 import parser.node.ArithmeticOperationNode;
 import parser.node.AssignationNode;
 import parser.node.DeclarationNode;
+import parser.node.ExpressionNode;
 import parser.node.IdentifierNode;
 import parser.node.NumberNode;
 import parser.node.PrintNode;
@@ -72,6 +74,54 @@ public class TestInterpreter {
         ProgramNode programNode = new ProgramNode();
         programNode.addChild(assignationNode);
         programNode.addChild(declarationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
+
+    @Test
+    public void testSimpleDeclarationWithExpression() {
+        String identifier = "five";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+
+        ASTExpressionNode left1 = new NumberNode(10);
+
+        ASTExpressionNode left2 = new NumberNode(2);
+        ASTExpressionNode right2 = new NumberNode(3);
+        ExpressionNode right1 = new ExpressionNode(left2, right2, Operator.PLUS);
+
+        ExpressionNode expressionNode = new ExpressionNode(left1, right1, Operator.MINUS);
+
+        AssignationNode assignationNode = new AssignationNode(expressionNode, identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(declarationNode);
+        programNode.addChild(assignationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
+
+    @Test
+    public void testSimpleDeclarationWithExpression2() {
+        String identifier = "five";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+
+        ASTExpressionNode left2a = new NumberNode(2);
+        ASTExpressionNode right2a = new NumberNode(3);
+        ExpressionNode left1 = new ExpressionNode(left2a, right2a, Operator.PLUS);
+
+        ASTExpressionNode left2b = new NumberNode(3);
+        ASTExpressionNode right2b = new NumberNode(2);
+        ExpressionNode right1 = new ExpressionNode(left2b, right2b, Operator.MINUS);
+
+        ExpressionNode expressionNode = new ExpressionNode(left1, right1, Operator.MULTIPLY);
+
+        AssignationNode assignationNode = new AssignationNode(expressionNode, identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(declarationNode);
+        programNode.addChild(assignationNode);
         programNode.addChild(printNode);
         interpreter.interpret(programNode);
     }

@@ -1,7 +1,10 @@
 package interpreter;
 
 import parser.Operator;
+import parser.ParseException;
+import parser.node.ASTExpressionNode;
 import parser.node.ArithmeticOperationNode;
+import parser.node.ExpressionNode;
 import parser.node.IdentifierNode;
 import parser.node.NumberNode;
 import parser.node.StringConcatenationNode;
@@ -9,7 +12,11 @@ import parser.node.StringNode;
 
 import java.util.Map;
 
+import static java.lang.Integer.parseInt;
+
 public class ExpressionVisitorImpl implements ExpressionVisitor {
+
+    private static final String NOT_A_NUMBER = "[^0-9]";
 
     @Override
     public Integer visitExpression(ArithmeticOperationNode node) {
@@ -56,4 +63,44 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
         }
         throw new InterpreterException(value + " not defined yet");
     }
+
+    @Override
+    public Object visitExpression(ExpressionNode node) {
+        ASTExpressionNode right = node.getRight();
+        ASTExpressionNode left = node.getLeft();
+        Operator operator = node.getOperator();
+        Object leftResult = left.accept(this, null);
+        Object rightResult = right.accept(this, null);
+        return operate(operator, Integer.parseInt(leftResult.toString()), Integer.parseInt(rightResult.toString()));
+    }
+
+    private Object operate(Operator operator, int left, int right) {
+        switch (operator) {
+            case PLUS:
+                return left + right;
+            case MINUS:
+                return left - right;
+            case MULTIPLY:
+                return left * right;
+            case DIVIDE:
+                return left / right;
+            default: throw new ParseException("operator not valid");
+        }
+    }
+
+    /*private ASTExpressionNode parseOperation(List<Token> tokens) {
+        final Token first = tokens.get(0);
+        final Token operator = tokens.get(1);
+        final Token second = tokens.get(2);
+
+        if (first.getType().equals(TokenType.STRING) || second.getType().equals(TokenType.STRING)) {
+            if (operator.getType().equals(TokenType.PLUS)) {
+                return new StringConcatenationNode(first.getValue(), second.getValue());
+            } else {
+                throw new ParseException("only string concat (+) supported");
+            }
+        } else
+            return new ArithmeticOperationNode(parseInt(first.getValue()), parseInt(second.getValue()), toOperator(operator.getType()));
+    }*/
+
 }

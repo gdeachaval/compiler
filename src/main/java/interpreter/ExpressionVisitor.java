@@ -1,6 +1,7 @@
 package interpreter;
 
 import parser.node.ArithmeticOperationNode;
+import parser.node.ExpressionNode;
 import parser.node.IdentifierNode;
 import parser.node.NumberNode;
 import parser.node.StringConcatenationNode;
@@ -14,5 +15,5 @@ public interface ExpressionVisitor {
     Integer visitExpression(NumberNode node);
     String visitExpression(StringNode node);
     Object visitExpression(IdentifierNode node, Map<String, Object> vars);
-
+    Object visitExpression(ExpressionNode node);
 }
