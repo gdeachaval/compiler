@@ -18,7 +18,6 @@ import static java.lang.Integer.parseInt;
 
 public class ExpressionHandler extends AbstractHandler<ASTExpressionNode> {
 
-
     public ExpressionHandler(Rule rule) {
         super(rule);
     }

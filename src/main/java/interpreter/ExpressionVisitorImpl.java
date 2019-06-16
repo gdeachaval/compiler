@@ -1,5 +1,6 @@
 package interpreter;
 
+import lexer.Constants;
 import parser.Operator;
 import parser.ParseException;
 import parser.node.ASTExpressionNode;
@@ -13,8 +14,6 @@ import parser.node.StringNode;
 import java.util.Map;
 
 public class ExpressionVisitorImpl implements ExpressionVisitor {
-
-    private static final String STRING = "^\".*\"$";
 
     @Override
     public Integer visitExpression(ArithmeticOperationNode node) {
@@ -71,7 +70,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
         Object rightResult = right.accept(this, vars);
         String leftValue = leftResult.toString();
         String rightValue = rightResult.toString();
-        if (leftValue.matches(STRING) || rightValue.matches(STRING)) {
+        if (leftValue.matches(Constants.STRING) || rightValue.matches(Constants.STRING)) {
             return operateStrings(operator, leftValue, rightValue);
         } else {
             return operateNumbers(operator, Integer.parseInt(leftValue), Integer.parseInt(rightValue));

@@ -1,6 +1,7 @@
 import compiler.Compiler;
 import compiler.CompilerImpl;
 import interpreter.Interpreter;
+import interpreter.InterpreterException;
 import interpreter.InterpreterImpl;
 import lexer.Lexer;
 import lexer.LexerAutomaton;
@@ -42,6 +43,36 @@ public class CompilerTest {
 
     @Test
     public void testTwoExpressionCompilation() {
-        compiler.compile("let a:string = \"aaa\";\nlet b:string = \"bbb\";\nprint(a+b+2);");
+        compiler.compile("let a:string = \"aaa\";\nlet b:string = \"bbb\";\nprint(a+b);");
+    }
+
+    @Test
+    public void testTwoExpressionCompilation2() {
+        compiler.compile("let a:number = 2;\nlet b:number = 8;\nprint(a+b);");
+    }
+
+    @Test
+    public void testTwoExpressionCompilation3() {
+        compiler.compile("let a:string = \"2\";\nlet b:number = 8;\nprint(a+b);");
+    }
+
+    @Test
+    public void testTwoExpressionCompilation4() {
+        compiler.compile("let a:number = 2+2;\nlet b:number = 3+3;\nprint(a+b);");
+    }
+
+    @Test
+    public void testTwoExpressionCompilation5() {
+        compiler.compile("let a:string = \"he\";\nlet b:string = \"llo\";\nprint(a+b);");
+    }
+
+    @Test (expected = InterpreterException.class)
+    public void testTypeException() {
+        compiler.compile("let a:number = \"foo\";");
+    }
+
+    @Test (expected = InterpreterException.class)
+    public void testTypeException2() {
+        compiler.compile("let a:string = 2;");
     }
 }

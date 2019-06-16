@@ -1,5 +1,6 @@
 package interpreter;
 
+import lexer.Constants;
 import parser.node.ASTExpressionNode;
 import parser.node.ASTNode;
 import parser.node.AssignationDeclarationNode;
@@ -23,8 +24,20 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
     @Override
     public void visit(AssignationDeclarationNode node) {
         Object expressionResult = node.getExpression().accept(expressionVisitor, variableStack);
+        String type = node.getType();
+        assertType(expressionResult, type);
         String identifier = node.getIdentifier();
         variableStack.put(identifier, expressionResult);
+    }
+
+    private void assertType(Object expressionResult, String type) {
+        String result = expressionResult.toString();
+        if (result.matches(Constants.NUMBERS) && type.equals("string")) {
+            throw new InterpreterException("wrong type");
+        }
+        if (result.matches(Constants.STRING) && type.equals("number")) {
+            throw new InterpreterException("wrong type");
+        }
     }
 
     @Override
