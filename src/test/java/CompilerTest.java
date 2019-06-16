@@ -95,4 +95,14 @@ public class CompilerTest {
     public void testTypeException2() {
         compiler.compile("let a:string = 2;");
     }
+
+    @Test
+    public void testSingleQuoteString() {
+        compiler.compile("print(\'foo\');");
+    }
+
+    @Test (expected = InterpreterException.class)
+    public void testDeclarationAndUsageWithoutAssignation() {
+        compiler.compile("let a; print(a);");
+    }
 }

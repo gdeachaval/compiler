@@ -3,11 +3,11 @@ package interpreter;
 import common.Constants;
 import parser.Operator;
 import parser.ParseException;
-import parser.node.ASTExpressionNode;
-import parser.node.ExpressionNode;
-import parser.node.IdentifierNode;
-import parser.node.NumberNode;
-import parser.node.StringNode;
+import parser.node.expression.ASTExpressionNode;
+import parser.node.expression.ExpressionNode;
+import parser.node.expression.IdentifierNode;
+import parser.node.expression.NumberNode;
+import parser.node.expression.StringNode;
 
 import java.util.Map;
 
@@ -26,7 +26,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
     @Override
     public Object visitExpression(IdentifierNode node, Map<String, Object> vars) {
         String value = node.getValue();
-        if (vars.containsKey(value)) {
+        if (vars.containsKey(value) && vars.get(value) != null) {
             return vars.get(value);
         }
         throw new InterpreterException(value + " not defined yet");

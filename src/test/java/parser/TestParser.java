@@ -5,7 +5,7 @@ import lexer.token.TokenImpl;
 import lexer.token.TokenType;
 import org.junit.Before;
 import org.junit.Test;
-import parser.node.ProgramNode;
+import parser.node.regular.ProgramNode;
 
 import java.util.Arrays;
 import java.util.List;

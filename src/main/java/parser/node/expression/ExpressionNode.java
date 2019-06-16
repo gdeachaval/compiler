@@ -1,4 +1,4 @@
-package parser.node;
+package parser.node.expression;
 
 import interpreter.ExpressionVisitor;
 import parser.Operator;

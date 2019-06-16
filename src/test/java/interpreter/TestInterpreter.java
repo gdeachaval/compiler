@@ -3,15 +3,15 @@ package interpreter;
 import org.junit.Before;
 import org.junit.Test;
 import parser.Operator;
-import parser.node.ASTExpressionNode;
-import parser.node.AssignationNode;
-import parser.node.DeclarationNode;
-import parser.node.ExpressionNode;
-import parser.node.IdentifierNode;
-import parser.node.NumberNode;
-import parser.node.PrintNode;
-import parser.node.ProgramNode;
-import parser.node.StringNode;
+import parser.node.expression.ASTExpressionNode;
+import parser.node.expression.ExpressionNode;
+import parser.node.expression.IdentifierNode;
+import parser.node.expression.NumberNode;
+import parser.node.expression.StringNode;
+import parser.node.regular.AssignationNode;
+import parser.node.regular.DeclarationNode;
+import parser.node.regular.PrintNode;
+import parser.node.regular.ProgramNode;
 
 public class TestInterpreter {
 

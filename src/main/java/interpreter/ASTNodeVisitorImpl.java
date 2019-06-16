@@ -1,13 +1,13 @@
 package interpreter;
 
 import common.Constants;
-import parser.node.ASTExpressionNode;
-import parser.node.ASTNode;
-import parser.node.AssignationDeclarationNode;
-import parser.node.AssignationNode;
-import parser.node.DeclarationNode;
-import parser.node.PrintNode;
-import parser.node.ProgramNode;
+import parser.node.expression.ASTExpressionNode;
+import parser.node.regular.ASTNode;
+import parser.node.regular.AssignationDeclarationNode;
+import parser.node.regular.AssignationNode;
+import parser.node.regular.DeclarationNode;
+import parser.node.regular.PrintNode;
+import parser.node.regular.ProgramNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,7 +66,7 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
     public void visit(PrintNode node) {
         ASTExpressionNode expression = node.getExpression();
         Object expressionResult = expression.accept(expressionVisitor, variableStack);
-        String noQuotes = expressionResult.toString().replace("\"", "");
+        String noQuotes = expressionResult.toString().replace("\"", "").replace("\'", "");
         System.out.println(noQuotes);
     }
 }

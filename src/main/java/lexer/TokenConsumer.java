@@ -19,11 +19,6 @@ public class TokenConsumer implements Consumer<Token> {
         tokenList.add(token);
     }
 
-    @Override
-    public Consumer<Token> andThen(Consumer<? super Token> after) {
-        return null;
-    }
-
     List<Token> getResult() {
         return tokenList;
     }

@@ -14,7 +14,7 @@ public class InitialState extends AbstractState {
     @Override
     public LexerState next(Character character) {
         String charAsString = character.toString();
-        if (charAsString.matches(Constants.DOUBLE_QUOTE)) {
+        if (charAsString.matches(Constants.QUOTE)) {
             adjustContext(character);
             return new StringState(context, consumer);
         }

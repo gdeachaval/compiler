@@ -1,6 +1,7 @@
-package parser.node;
+package parser.node.regular;
 
 import interpreter.ASTNodeVisitor;
+import parser.node.expression.ASTExpressionNode;
 
 public class AssignationDeclarationNode implements ASTNode {
     private String declarator;

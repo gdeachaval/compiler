@@ -1,9 +1,9 @@
 package parser.handler;
 
 import lexer.token.Token;
-import parser.node.ASTExpressionNode;
-import parser.node.ASTNode;
-import parser.node.AssignationNode;
+import parser.node.expression.ASTExpressionNode;
+import parser.node.regular.ASTNode;
+import parser.node.regular.AssignationNode;
 import parser.rules.Rule;
 
 import java.util.List;

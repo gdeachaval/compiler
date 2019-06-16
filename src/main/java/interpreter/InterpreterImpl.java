@@ -1,6 +1,6 @@
 package interpreter;
 
-import parser.node.ASTNode;
+import parser.node.regular.ASTNode;
 
 public class InterpreterImpl implements Interpreter {
 

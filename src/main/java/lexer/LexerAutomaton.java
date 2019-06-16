@@ -15,7 +15,7 @@ public class LexerAutomaton implements Lexer {
 
     public LexerAutomaton(TokenConsumer consumer) {
         this.consumer = consumer;
-        actualState = new InitialState(new ContextImpl(), consumer);
+        this.actualState = new InitialState(new ContextImpl(), consumer);
     }
 
     @Override

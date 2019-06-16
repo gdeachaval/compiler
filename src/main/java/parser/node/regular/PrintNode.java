@@ -1,7 +1,8 @@
-package parser.node;
+package parser.node.regular;
 
 
 import interpreter.ASTNodeVisitor;
+import parser.node.expression.ASTExpressionNode;
 
 public class PrintNode implements ASTNode {
     private ASTExpressionNode expression;

@@ -1,10 +1,10 @@
 package interpreter;
 
-import parser.node.AssignationDeclarationNode;
-import parser.node.AssignationNode;
-import parser.node.DeclarationNode;
-import parser.node.PrintNode;
-import parser.node.ProgramNode;
+import parser.node.regular.AssignationDeclarationNode;
+import parser.node.regular.AssignationNode;
+import parser.node.regular.DeclarationNode;
+import parser.node.regular.PrintNode;
+import parser.node.regular.ProgramNode;
 
 public interface ASTNodeVisitor {
     void visit(AssignationDeclarationNode node);

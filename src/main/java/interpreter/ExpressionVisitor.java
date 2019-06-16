@@ -1,9 +1,9 @@
 package interpreter;
 
-import parser.node.ExpressionNode;
-import parser.node.IdentifierNode;
-import parser.node.NumberNode;
-import parser.node.StringNode;
+import parser.node.expression.ExpressionNode;
+import parser.node.expression.IdentifierNode;
+import parser.node.expression.NumberNode;
+import parser.node.expression.StringNode;
 
 import java.util.Map;
 

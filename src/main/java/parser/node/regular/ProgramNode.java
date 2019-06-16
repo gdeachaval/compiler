@@ -1,4 +1,4 @@
-package parser.node;
+package parser.node.regular;
 
 import interpreter.ASTNodeVisitor;
 

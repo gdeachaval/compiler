@@ -1,20 +1,19 @@
-package parser.node;
+package parser.node.expression;
 
 import interpreter.ExpressionVisitor;
 
 import java.util.Map;
 
-public class NumberNode implements ASTExpressionNode {
-    private int value;
+public class StringNode implements ASTExpressionNode {
+    private String value;
 
-    public NumberNode(int value) {
+    public StringNode(String value) {
         this.value = value;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
-
 
     @Override
     public Object accept(ExpressionVisitor expressionVisitor, Map<String, Object> variableStack) {

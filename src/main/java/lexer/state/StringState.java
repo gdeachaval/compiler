@@ -14,11 +14,11 @@ public class StringState extends AbstractState {
     @Override
     public LexerState next(Character character) {
         String charAsString = character.toString();
-        if (charAsString.matches(Constants.NOT_A_DOUBLE_QUOTE)) {
+        if (charAsString.matches(Constants.NOT_A_QUOTE)) {
             adjustContext(character);
             return new StringState(context, consumer);
         }
-        if (charAsString.matches(Constants.DOUBLE_QUOTE)) {
+        if (charAsString.matches(Constants.QUOTE)) {
             adjustContext(character);
             generateToken(TokenType.STRING);
             return new InitialState(context, consumer);
