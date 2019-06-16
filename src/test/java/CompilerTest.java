@@ -71,6 +71,21 @@ public class CompilerTest {
         compiler.compile("   \n\n   let     foo: number   = 123312313    \n   ;\n\n\n\nprint(foo)     ; ");
     }
 
+    @Test
+    public void testReassignation() {
+        compiler.compile("let a:number = 2; a = 3; print(a);");
+    }
+
+    @Test
+    public void testExpressionWithRepeteadVar() {
+        compiler.compile("let a:number = 2; print(a*a*a);");
+    }
+
+    @Test
+    public void testPrecedenceInExpressions() {
+        compiler.compile("let a:number = 2; let b:number = 3; let c:number = 1; print(a*b-c);");
+    }
+
     @Test(expected = InterpreterException.class)
     public void testTypeException() {
         compiler.compile("let a:number = \"foo\";");
