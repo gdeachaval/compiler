@@ -125,4 +125,79 @@ public class TestInterpreter {
         programNode.addChild(printNode);
         interpreter.interpret(programNode);
     }
+
+    @Test
+    public void testSimpleDeclarationWithExpression3() {
+        String identifier = "five";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+
+        ASTExpressionNode left2a = new StringNode("he");
+        ASTExpressionNode right2a = new StringNode("llo ");
+        ExpressionNode left1 = new ExpressionNode(left2a, right2a, Operator.PLUS);
+
+        ASTExpressionNode left2b = new StringNode("wo");
+        ASTExpressionNode right2b = new StringNode("rld");
+        ExpressionNode right1 = new ExpressionNode(left2b, right2b, Operator.PLUS);
+
+        ExpressionNode expressionNode = new ExpressionNode(left1, right1, Operator.PLUS);
+
+        AssignationNode assignationNode = new AssignationNode(expressionNode, identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(declarationNode);
+        programNode.addChild(assignationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
+
+    @Test
+    public void testSimpleDeclarationWithExpression4() {
+        String identifier = "five";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+
+        ASTExpressionNode left2a = new StringNode("\"he\"");
+        ASTExpressionNode right2a = new StringNode("\"2 \"");
+        ExpressionNode left1 = new ExpressionNode(left2a, right2a, Operator.PLUS);
+
+        ASTExpressionNode left2b = new StringNode("\"wo\"");
+        ASTExpressionNode right2b = new StringNode("\"3\"");
+        ExpressionNode right1 = new ExpressionNode(left2b, right2b, Operator.PLUS);
+
+        ExpressionNode expressionNode = new ExpressionNode(left1, right1, Operator.PLUS);
+
+        AssignationNode assignationNode = new AssignationNode(expressionNode, identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(declarationNode);
+        programNode.addChild(assignationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
+
+    @Test
+    public void testSimpleDeclarationWithExpression5() {
+        String identifier = "five";
+        DeclarationNode declarationNode = new DeclarationNode("let", identifier);
+
+        ASTExpressionNode left2a = new StringNode("1");
+        ASTExpressionNode right2a = new StringNode("2");
+        ExpressionNode left1 = new ExpressionNode(left2a, right2a, Operator.PLUS);
+
+        ASTExpressionNode left2b = new StringNode("3");
+        ASTExpressionNode right2b = new StringNode("4");
+        ExpressionNode right1 = new ExpressionNode(left2b, right2b, Operator.PLUS);
+
+        ExpressionNode expressionNode = new ExpressionNode(left1, right1, Operator.PLUS);
+
+        AssignationNode assignationNode = new AssignationNode(expressionNode, identifier);
+        IdentifierNode identifierNode = new IdentifierNode(identifier);
+        PrintNode printNode = new PrintNode(identifierNode);
+        ProgramNode programNode = new ProgramNode();
+        programNode.addChild(declarationNode);
+        programNode.addChild(assignationNode);
+        programNode.addChild(printNode);
+        interpreter.interpret(programNode);
+    }
 }

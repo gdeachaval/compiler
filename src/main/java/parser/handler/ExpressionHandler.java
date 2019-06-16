@@ -84,7 +84,7 @@ public class ExpressionHandler extends AbstractHandler<ASTExpressionNode> {
         if (tokenType.equals(TokenType.NUMBER)) return new NumberNode(parseInt(token.getValue()));
         if (tokenType.equals(TokenType.IDENTIFIER)) return new IdentifierNode(token.getValue());
         if (tokenType.equals(TokenType.STRING))
-            return new StringNode(token.getValue().substring(1, token.getValue().length() - 1));
+            return new StringNode(token.getValue());
         throw new ParseException("Not a valid expression");
     }
 

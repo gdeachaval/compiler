@@ -54,6 +54,7 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
     public void visit(PrintNode node) {
         ASTExpressionNode expression = node.getExpression();
         Object expressionResult = expression.accept(expressionVisitor, variableStack);
-        System.out.println(expressionResult);
+        String noQuotes = expressionResult.toString().replace("\"", "");
+        System.out.println(noQuotes);
     }
 }
