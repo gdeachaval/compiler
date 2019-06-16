@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import parser.Operator;
 import parser.node.ASTExpressionNode;
-import parser.node.ArithmeticOperationNode;
 import parser.node.AssignationNode;
 import parser.node.DeclarationNode;
 import parser.node.ExpressionNode;
@@ -21,16 +20,6 @@ public class TestInterpreter {
     @Before
     public void setUp() {
         interpreter = new InterpreterImpl();
-    }
-
-    @Test
-    public void testSimplePrint() {
-        interpreter.interpret(new PrintNode(new ArithmeticOperationNode(1, 2, Operator.PLUS)));
-    }
-
-    @Test
-    public void testSimplePrint2() {
-        interpreter.interpret(new PrintNode(new ArithmeticOperationNode(10, 2, Operator.DIVIDE)));
     }
 
     @Test

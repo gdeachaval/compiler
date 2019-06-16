@@ -66,6 +66,11 @@ public class CompilerTest {
         compiler.compile("let a:string = \"he\";\nlet b:string = \"llo\";\nprint(a+b);");
     }
 
+    @Test
+    public void testManySpacesCompilation() {
+        compiler.compile("   \n\n   let     foo: number   = 123312313    \n   ;\n\n\n\nprint(foo)     ; ");
+    }
+
     @Test (expected = InterpreterException.class)
     public void testTypeException() {
         compiler.compile("let a:number = \"foo\";");

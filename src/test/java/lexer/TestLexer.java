@@ -404,22 +404,14 @@ public class TestLexer {
     }
 
     @Test
-    public void test20SimpleTwoLine() {
+    public void test20MultipleSpaces() {
         // given
-        Supplier<Character> supplier = new CharacterSupplier("print(2);print(3)");
+        Supplier<Character> supplier = new CharacterSupplier("  ");
 
         List<Token> result = lexer.lex(supplier);
 
-        Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
-        Token second = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
-        Token third = new TokenImpl(7, 0, "2", TokenType.NUMBER);
-        Token fourth = new TokenImpl(8, 0, ")", TokenType.RPARENTHESIS);
-        Token fourth2 = new TokenImpl(9, 0, ";", TokenType.SEMICOLON);
-        Token fifth = new TokenImpl(14, 0, "print", TokenType.PRINT);
-        Token sixth = new TokenImpl(15, 0, "(", TokenType.LPARENTHESIS);
-        Token seventh = new TokenImpl(16, 0, "3", TokenType.NUMBER);
-        Token eight = new TokenImpl(17, 0, ")", TokenType.RPARENTHESIS);
-        List<Token> expected = Arrays.asList(first, second, third, fourth, fourth2, fifth, sixth, seventh, eight);
+        Token first = new TokenImpl(2, 0, "  ", TokenType.SPACE);
+        List<Token> expected = Collections.singletonList(first);
 
         assertTokenList(result, expected);
     }

@@ -46,8 +46,7 @@ public class ASTNodeVisitorImpl implements ASTNodeVisitor {
         if (variableStack.containsKey(identifier)) {
             Object expressionResult = node.getExpression().accept(expressionVisitor, variableStack);
             variableStack.put(identifier, expressionResult);
-        }
-        else throw new InterpreterException(identifier + " not defined yet");
+        } else throw new InterpreterException(identifier + " not defined yet");
     }
 
     @Override

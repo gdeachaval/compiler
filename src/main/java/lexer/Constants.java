@@ -15,6 +15,8 @@ public final class Constants {
     public static final String ALPHANUMERIC = "[a-zA-Z|0-9]";
     public static final String OPERATOR = "\\+|-|\\*|/";
     public static final String SPACE = "\\s|\n";
+    public static final String SPACES = "[\\s]*";
     public static final String NEW_LINE = "\n";
+    public static final String NEW_LINES = "[\n]*";
     public static final String STRING = "^\".*\"$";
 }

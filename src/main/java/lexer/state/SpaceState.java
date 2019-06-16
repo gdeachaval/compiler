@@ -31,11 +31,11 @@ public class SpaceState extends AbstractState {
 
     private TokenType getTokenType(Context context) {
         String accum = context.getAccum();
-        if (accum.equals(" ")) {
-            return TokenType.SPACE;
-        }
-        if (accum.equals("\n")) {
+        if (accum.matches(Constants.NEW_LINES)) {
             return TokenType.NEW_LINE;
+        }
+        if (accum.matches(Constants.SPACES)) {
+            return TokenType.SPACE;
         }
         return null;
     }
