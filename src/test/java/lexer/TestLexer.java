@@ -417,7 +417,6 @@ public class TestLexer {
     }
 
 
-
     private void assertTokens(Token actual, Token expected) {
         assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));
         assertThat(actual.getLine(), is(equalTo(expected.getLine())));

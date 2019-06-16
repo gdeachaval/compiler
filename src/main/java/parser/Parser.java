@@ -1,11 +1,11 @@
 package parser;
 
 import lexer.token.Token;
-import parser.node.ProgramNode;
+import parser.node.ASTNode;
 
 import java.util.List;
 
 public interface Parser {
 
-    ProgramNode parse(List<Token> tokens);
+    ASTNode parse(List<Token> tokens);
 }

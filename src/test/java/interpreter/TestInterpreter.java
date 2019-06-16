@@ -53,7 +53,7 @@ public class TestInterpreter {
         interpreter.interpret(programNode);
     }
 
-    @Test (expected = InterpreterException.class)
+    @Test(expected = InterpreterException.class)
     public void testSimpleIdentifierNotDefined() {
         String identifier = "two";
         DeclarationNode declarationNode = new DeclarationNode("let", identifier);

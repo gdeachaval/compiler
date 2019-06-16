@@ -1,6 +1,6 @@
 package lexer.state;
 
-import lexer.Constants;
+import common.Constants;
 import lexer.TokenConsumer;
 import lexer.state.context.Context;
 import lexer.token.TokenType;

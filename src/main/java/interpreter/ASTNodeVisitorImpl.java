@@ -1,6 +1,6 @@
 package interpreter;
 
-import lexer.Constants;
+import common.Constants;
 import parser.node.ASTExpressionNode;
 import parser.node.ASTNode;
 import parser.node.AssignationDeclarationNode;

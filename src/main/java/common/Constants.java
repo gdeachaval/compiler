@@ -1,9 +1,9 @@
-package lexer;
+package common;
 
 public final class Constants {
 
     private Constants() {
-        throw new IllegalStateException("Constants class");
+        throw new IllegalStateException("common.Constants class");
     }
 
     public static final String NUMBERS = "[0-9]*";

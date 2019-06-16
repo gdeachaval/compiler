@@ -33,8 +33,9 @@ public class TestParser {
         Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
 
-        ProgramNode programNode = parser.parse(simplePrint);
+        ProgramNode programNode = (ProgramNode) parser.parse(simplePrint);
         assertThat(programNode.getChildren(), hasSize(1));
+
     }
 
     @Test
@@ -46,11 +47,10 @@ public class TestParser {
         Token fifth = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth);
 
-        ProgramNode programNode = parser.parse(simplePrint);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simplePrint);
     }
 
-    @Test (expected = ParseException.class)
+    @Test(expected = ParseException.class)
     public void testMalformedPrintParse() {
         Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
         Token second = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
@@ -73,11 +73,11 @@ public class TestParser {
         Token seventh = new TokenImpl(11, 0, ";", TokenType.SEMICOLON);
         List<Token> simplePrint = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
 
-        ProgramNode programNode = parser.parse(simplePrint);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simplePrint);
+
     }
 
-    @Test (expected = ParseException.class)
+    @Test(expected = ParseException.class)
     public void testMalformedPrint() {
         Token zero = new TokenImpl(6, 0, "(", TokenType.LPARENTHESIS);
         Token first = new TokenImpl(5, 0, "print", TokenType.PRINT);
@@ -99,11 +99,11 @@ public class TestParser {
         Token third = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleDeclaration = Arrays.asList(first, second, third);
 
-        ProgramNode programNode = parser.parse(simpleDeclaration);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleDeclaration);
+
     }
 
-    @Test (expected = ParseException.class)
+    @Test(expected = ParseException.class)
     public void testSimpleDeclarationMisformedParse() {
         Token first = new TokenImpl(0, 0, "let", TokenType.LET);
         Token second = new TokenImpl(0, 0, "\"foo\"", TokenType.STRING);
@@ -124,8 +124,8 @@ public class TestParser {
         Token seventh = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleAssignationDeclarationWithType = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh);
 
-        ProgramNode programNode = parser.parse(simpleAssignationDeclarationWithType);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleAssignationDeclarationWithType);
+
     }
 
     @Test
@@ -141,8 +141,8 @@ public class TestParser {
         Token ninth = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleAssignationDeclarationWithType = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh, eight, ninth);
 
-        ProgramNode programNode = parser.parse(simpleAssignationDeclarationWithType);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleAssignationDeclarationWithType);
+
     }
 
     @Test
@@ -153,8 +153,8 @@ public class TestParser {
         Token fourth = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleAssignation = Arrays.asList(first, second, third, fourth);
 
-        ProgramNode programNode = parser.parse(simpleAssignation);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleAssignation);
+
     }
 
     @Test
@@ -167,8 +167,8 @@ public class TestParser {
         Token sixth = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleAssignation = Arrays.asList(first, second, third, fourth, fifth, sixth);
 
-        ProgramNode programNode = parser.parse(simpleAssignation);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleAssignation);
+
     }
 
     @Test
@@ -183,7 +183,6 @@ public class TestParser {
         Token eight = new TokenImpl(0, 0, ";", TokenType.SEMICOLON);
         List<Token> simpleAssignation = Arrays.asList(first, second, third, fourth, fifth, sixth, seventh, eight);
 
-        ProgramNode programNode = parser.parse(simpleAssignation);
-        assertThat(programNode.getChildren(), hasSize(1));
+        parser.parse(simpleAssignation);
     }
 }

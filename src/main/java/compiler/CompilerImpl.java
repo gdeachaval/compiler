@@ -5,7 +5,7 @@ import lexer.CharacterSupplier;
 import lexer.Lexer;
 import lexer.token.Token;
 import parser.Parser;
-import parser.node.ProgramNode;
+import parser.node.ASTNode;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class CompilerImpl implements Compiler {
     @Override
     public void compile(String program) {
         List<Token> tokens = lexer.lex(new CharacterSupplier(program));
-        ProgramNode node = parser.parse(tokens);
+        ASTNode node = parser.parse(tokens);
         interpreter.interpret(node);
     }
 }

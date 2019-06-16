@@ -71,12 +71,12 @@ public class CompilerTest {
         compiler.compile("   \n\n   let     foo: number   = 123312313    \n   ;\n\n\n\nprint(foo)     ; ");
     }
 
-    @Test (expected = InterpreterException.class)
+    @Test(expected = InterpreterException.class)
     public void testTypeException() {
         compiler.compile("let a:number = \"foo\";");
     }
 
-    @Test (expected = InterpreterException.class)
+    @Test(expected = InterpreterException.class)
     public void testTypeException2() {
         compiler.compile("let a:string = 2;");
     }
