@@ -30,6 +30,6 @@ public class ExpressionNode implements ASTExpressionNode {
 
     @Override
     public Object accept(ExpressionVisitor expressionVisitor, Map<String, Object> variableStack) {
-        return expressionVisitor.visitExpression(this);
+        return expressionVisitor.visitExpression(this, variableStack);
     }
 }

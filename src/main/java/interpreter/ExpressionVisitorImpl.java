@@ -63,12 +63,12 @@ public class ExpressionVisitorImpl implements ExpressionVisitor {
     }
 
     @Override
-    public Object visitExpression(ExpressionNode node) {
+    public Object visitExpression(ExpressionNode node, Map<String, Object> vars) {
         ASTExpressionNode right = node.getRight();
         ASTExpressionNode left = node.getLeft();
         Operator operator = node.getOperator();
-        Object leftResult = left.accept(this, null);
-        Object rightResult = right.accept(this, null);
+        Object leftResult = left.accept(this, vars);
+        Object rightResult = right.accept(this, vars);
         String leftValue = leftResult.toString();
         String rightValue = rightResult.toString();
         if (leftValue.matches(STRING) || rightValue.matches(STRING)) {

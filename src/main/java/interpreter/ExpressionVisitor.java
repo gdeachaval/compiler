@@ -15,5 +15,5 @@ public interface ExpressionVisitor {
     Integer visitExpression(NumberNode node);
     String visitExpression(StringNode node);
     Object visitExpression(IdentifierNode node, Map<String, Object> vars);
-    Object visitExpression(ExpressionNode node);
+    Object visitExpression(ExpressionNode node, Map<String, Object> vars);
 }

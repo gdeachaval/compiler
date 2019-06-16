@@ -27,16 +27,21 @@ public class CompilerTest {
 
     @Test
     public void testSimpleCompilation001() {
-        compiler.compile("print(2+2) ;");
+        compiler.compile("print(2+2);");
     }
 
     @Test
     public void testSimpleCompilation002() {
-        compiler.compile("let a ;\na = 2 ;\nprint(a) ;");
+        compiler.compile("let a;\na = 2;\nprint(a);");
     }
 
     @Test
     public void testSimpleCompilation004() {
-        compiler.compile("print(\"foo\") ;");
+        compiler.compile("print(\"foo\");");
+    }
+
+    @Test
+    public void testTwoExpressionCompilation() {
+        compiler.compile("let a:string = \"aaa\";\nlet b:string = \"bbb\";\nprint(a+b+2);");
     }
 }

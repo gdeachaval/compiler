@@ -31,7 +31,7 @@ public class ExpressionHandler extends AbstractHandler<ASTExpressionNode> {
     private Optional<ASTExpressionNode> handleInternal(List<Token> tokens, int start, int end) {
         if (start > end) return Optional.empty();
         if (end - start == 1) {
-            Token first = tokens.get(0);
+            Token first = tokens.get(start);
             return Optional.of(parseValue(first));
         }
         Optional<Integer> plusOrMinusOptionalIndex = findPlusOrMinus(tokens, start, end);

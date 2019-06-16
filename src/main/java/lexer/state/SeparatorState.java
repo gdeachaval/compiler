@@ -12,11 +12,6 @@ public class SeparatorState extends AbstractState {
 
     @Override
     public LexerState next(Character character) {
-        String charAsString = character.toString();
-        if (charAsString.matches(Constants.SEPARATOR)) {
-            adjustContext(character);
-            return new SeparatorState(context, consumer);
-        }
         return defaultHandle(character, getTokenType(context));
     }
 
