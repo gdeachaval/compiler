@@ -105,4 +105,9 @@ public class CompilerTest {
     public void testDeclarationAndUsageWithoutAssignation() {
         compiler.compile("let a; print(a);");
     }
+
+    @Test
+    public void testPrintSeparatorExpression() {
+        compiler.compile("print(\";;()()\");");
+    }
 }

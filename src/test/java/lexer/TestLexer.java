@@ -416,6 +416,22 @@ public class TestLexer {
         assertTokenList(result, expected);
     }
 
+    @Test (expected = LexerException.class)
+    public void test21Exception() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("print((2);");
+
+        lexer.lex(supplier);
+    }
+
+    @Test (expected = LexerException.class)
+    public void test22Exception() {
+        // given
+        Supplier<Character> supplier = new CharacterSupplier("print();");
+
+        lexer.lex(supplier);
+    }
+
 
     private void assertTokens(Token actual, Token expected) {
         assertThat(actual.getColumn(), is(equalTo(expected.getColumn())));

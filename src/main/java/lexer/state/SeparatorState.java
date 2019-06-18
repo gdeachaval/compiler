@@ -1,5 +1,7 @@
 package lexer.state;
 
+import common.Constants;
+import lexer.LexerException;
 import lexer.TokenConsumer;
 import lexer.state.context.Context;
 import lexer.token.TokenType;
@@ -11,6 +13,10 @@ public class SeparatorState extends AbstractState {
 
     @Override
     public LexerState next(Character character) {
+        String charAsString = character.toString();
+        if (charAsString.matches(Constants.SEPARATOR)) {
+            if (character == '(' || character == ')') throw new LexerException(context);
+        }
         return defaultHandle(character, getTokenType(context));
     }
 
